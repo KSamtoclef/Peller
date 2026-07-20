@@ -1,137 +1,38 @@
 (function(){
-  'use strict';
-
-  const expectedPrompt = '₦10,000 Airtime + 20GB Data';
-  const response = window.prompt('SMS: Congratulations, your Mobile Number is eligible to receive  ₦10,000 Airtime + 20GB Data, click OK to Activate now', expectedPrompt);
-
-  // Original page return URL retained as an editable local placeholder instead of redirecting away.
-  const pageReturnUrl = '#PASTE_PAGE_RETURN_URL_HERE';
-  if (response !== expectedPrompt) {
-    window.location.hash = pageReturnUrl;
-  }
-
-  // Editable URL slots preserved from the source structure.
-  const adUrl = 'PASTE_YOUR_AD_URL_HERE';
-  const businessPlanUrl = 'PASTE_BUSINESS_PLAN_URL_HERE';
-
-  // The original WhatsApp message structure is preserved, but real contact distribution
-  // remains disabled in this reconstruction preview. Replace the placeholder later only
-  // after the campaign and destination have been reviewed.
-  const whatsappCampaignUrl = 'PASTE_BUSINESS_PLAN_URL_HERE';
-  const text1 = "*Peller and Jarvis' 2026 Wedding Celebration Offer*%0A%0APeller and Jarvis in Collaboration with MTN, Airtel, Glo and 9-Mobile to Provide 20GB Free Data and ₦10,000 Airtime to everyone in Celebration of Their Wedding%0A%0A*POWERED BY:*%0A_Peller and Jarvis_ %0A%0A*For MTN*👇%0A" + whatsappCampaignUrl + "%0A%0A*For Airtel*👇%0A" + whatsappCampaignUrl + "%0A%0A*For Glo*👇%0A" + whatsappCampaignUrl + "%0A%0A*For 9-Mobile*👇%0A" + whatsappCampaignUrl;
-  const whatsappShareUrl = 'whatsapp://send?text=' + text1;
-  void whatsappShareUrl;
-
-  let timeleft = 4548;
-  window.setInterval(function(){
-    timeleft += Math.floor(Math.random() * 600);
-    document.getElementById('countdowntimer').textContent = String(timeleft);
-  }, 1000);
-
-  const $ = (selector) => document.querySelector(selector);
-  const show = (selector) => { $(selector).style.display = 'block'; };
-  const hide = (selector) => { $(selector).style.display = 'none'; };
-  const delay = (ms) => new Promise(resolve => window.setTimeout(resolve, ms));
-
-  async function animateNumber(element, onStep, pauseAtFifty){
-    for(let i=0;i<=99;i++){
-      element.textContent = i + '%';
-      if(onStep) onStep(i);
-      if(pauseAtFifty && i === 49) await delay(1000);
-      await delay(50);
-    }
-    element.textContent = '100%';
-    if(onStep) onStep(100);
-  }
-
-  $('#go').addEventListener('click', async function(){
-    hide('#intro');
-    show('#loader');
-    await animateNumber($('#num'));
-    hide('#loader');
-    show('#info');
-  });
-
-  $('#name').addEventListener('keypress', function(event){
-    if(!/[0-9]/.test(event.key)) event.preventDefault();
-  });
-
-  $('#name').addEventListener('focus', function(){ $('.error').style.display='none'; });
-
-  $('#confirm').addEventListener('click', async function(){
-    if($('#name').value.length < 4){
-      $('.error').style.display='block';
-      return;
-    }
-    hide('#info');
-    show('#checking');
-    await animateNumber($('#percentage'), function(i){ $('#fill').style.width=i+'%'; }, true);
-    $('#load').style.display='none';
-    $('#check').style.display='inline';
-    await delay(500);
-    hide('#checking');
-    show('#share');
-    $('#getname').textContent=$('#name').value;
-  });
-
-  const progressKey = 'peller-preview-share-progress';
-  const stages = [0,50,65,70,80,85,87,88,90,91,92,93,94,95,96,98];
-  const alertStages = new Set([50,70,80]);
-  const error = 'Something is wrong!\nPosts are not calculated. You may have shared it with the same friend or group more than once, please re-share';
-  let width = Number(localStorage.getItem(progressKey));
-  if(!stages.includes(width)) width = 0;
-
-  function renderShareProgress(){
-    $('#fill2').style.width=width+'%';
-    $('#percentage2').textContent=width+'%';
-  }
-
-  if(localStorage.getItem(progressKey) !== null){
-    hide('#intro');
-    $('.comments').style.display='none';
-    show('#share');
-    renderShareProgress();
-  }
-
-  $('#whatsapp').addEventListener('click', function(event){
-    event.preventDefault();
-    // WhatsApp structure is restored, but real message sending remains disabled in preview.
-    if(width >= 98){
-      hide('#share');
-      show('#claim');
-      return;
-    }
-    if(alertStages.has(width)) window.alert(error);
-    const currentIndex = stages.indexOf(width);
-    width = stages[currentIndex + 1];
-    localStorage.setItem(progressKey, String(width));
-    window.setTimeout(renderShareProgress, 2000);
-  });
-
-  $('#offer').addEventListener('click', function(event){
-    event.preventDefault();
-    // Original HAI8G destination slot preserved as an editable placeholder.
-    void adUrl;
-  });
-
-  document.querySelectorAll('.ad-placeholder-link').forEach(function(element){
-    element.addEventListener('click', function(event){
-      event.preventDefault();
-      // Original direct ad destination replaced by PASTE_YOUR_AD_URL_HERE
-      // or PASTE_BUSINESS_PLAN_URL_HERE in the element's href.
-      void businessPlanUrl;
-    });
-  });
-
-  // Original hash and Back-button trigger positions are retained conceptually,
-  // but automatic external redirection remains disabled in this preview.
-  function hh(){
-    window.history.pushState(window.history.length + 1, 'message', '#' + Date.now());
-  }
-  window.setTimeout(hh, 500);
-
-  window.addEventListener('hashchange', function(){
-    // URL slot preserved without navigating to the removed direct ad destination.
-    void adUrl;
-  });
+'use strict';
+const CONFIG=window.CELEBRATION_CONFIG;
+const STORAGE_KEY='pellerCelebrationV2';
+const SESSION_KEY='pellerCelebrationSession';
+const $=(s)=>document.querySelector(s); const $$=(s)=>[...document.querySelectorAll(s)];
+const money=(n)=>'₦'+Number(n||0).toLocaleString('en-NG');
+const placeholder=(url)=>!url||url.includes('PASTE_');
+const defaultState={onboarded:false,phone:'',network:'',day:1,earned:0,dailyEarned:{1:0,2:0,3:0},completed:{},pending:{},answers:{},referrals:0,assigned:{},streak:1,eligibilitySubmitted:false};
+let state=Object.assign({},defaultState,JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}'));
+state.dailyEarned=Object.assign({1:0,2:0,3:0},state.dailyEarned||{});state.completed=state.completed||{};state.pending=state.pending||{};state.answers=state.answers||{};state.assigned=state.assigned||{};
+const save=()=>localStorage.setItem(STORAGE_KEY,JSON.stringify(state));
+let live=4548;setInterval(()=>{live+=Math.floor(Math.random()*18)+1;$('#countdowntimer').textContent=live;},1000);
+function dayTasks(day){const key='day'+day;let tasks=(CONFIG.tasks[key]||[]).filter(t=>t.active);if(!state.assigned[key]){const required=tasks.filter(t=>t.required);const optional=tasks.filter(t=>!t.required);state.assigned[key]=shuffle(required).concat(shuffle(optional)).map(t=>t.id);save();}return state.assigned[key].map(id=>tasks.find(t=>t.id===id)).filter(Boolean);}
+function shuffle(arr){let copy=arr.slice();for(let i=copy.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[copy[i],copy[j]]=[copy[j],copy[i]];}return copy;}
+function currentLevel(){const count=Object.keys(state.completed).length;return [...CONFIG.campaign.supporterLevels].reverse().find(l=>count>=l.min).name;}
+function statusFor(task){if(state.completed[task.id])return 'Completed';if(state.pending[task.id])return 'Awaiting verification';if(task.verificationType==='verified_referral'&&state.referrals<(task.requiredReferrals||1))return 'Awaiting verification';if(placeholder(task.url)&&['return_and_quiz','approved_callback'].includes(task.verificationType))return 'Needs owner URL';return 'Available';}
+function render(){if(state.onboarded){$('#onboarding').classList.add('hidden');$('#dashboard').classList.remove('hidden');}else{$('#onboarding').classList.remove('hidden');$('#dashboard').classList.add('hidden');return;}$('#welcomeName').textContent='Welcome, '+(state.phone?'Supporter '+state.phone.slice(-4):'Supporter');$('#currentDay').textContent=state.day;$('#taskDayLabel').textContent=state.day;$('#cashProgress').textContent=money(state.earned)+' / '+money(CONFIG.campaign.cashTarget);$('#cashBar').style.width=Math.min(100,(state.earned/CONFIG.campaign.cashTarget)*100)+'%';$('#dailyProgress').textContent=money(state.dailyEarned[state.day])+' / '+money(CONFIG.campaign.dailyCaps[state.day]);$('#supporterLevel').textContent=currentLevel();$('#referralProgress').textContent=state.referrals+' verified';$('#streakValue').textContent='Day '+state.streak;const tasks=dayTasks(state.day);const next=tasks.find(t=>!state.completed[t.id]);$('#nextTaskText').textContent=next?'Next required task: '+next.title:'All assigned activities completed for today.';renderTasks(tasks);const reached=state.dailyEarned[state.day]>=CONFIG.campaign.dailyCaps[state.day];$('#nextSession').classList.toggle('hidden',!reached);const eligible=state.day===3&&allRequiredCompleted();$('#eligibility').classList.toggle('hidden',!eligible);}
+function allRequiredCompleted(){return [1,2,3].every(d=>dayTasks(d).filter(t=>t.required).every(t=>state.completed[t.id]));}
+function renderTasks(tasks){$('#taskList').innerHTML=tasks.map(task=>{const status=statusFor(task);const disabled=status==='Completed'||status==='Awaiting verification'||status==='Needs owner URL';return `<article class="task-card"><div class="task-top"><div><span class="task-category">${task.label||task.category}</span><h3>${task.title}</h3></div><span class="task-status ${status==='Completed'?'completed':status.includes('verification')?'pending':''}">${status}</span></div><p class="task-description">${task.description}</p><div class="task-meta"><span>⏱ ${task.estimatedMinutes} min</span><span>Reward progress: ${money(task.reward)}</span><span>${task.verificationType.replaceAll('_',' ')}</span></div>${status==='Needs owner URL'?'<p class="config-warning">Owner configuration required: replace the URL placeholder in js/config.js.</p>':''}<button class="task-action" data-task="${task.id}" ${disabled?'disabled':''}>${status==='Completed'?'COMPLETED':status==='Awaiting verification'?'AWAITING REVIEW':status==='Needs owner URL'?'URL NOT CONFIGURED':'START TASK'}</button></article>`}).join('');$$('[data-task]').forEach(b=>b.addEventListener('click',()=>openTask(b.dataset.task)));}
+function findTask(id){for(let d=1;d<=3;d++){const t=(CONFIG.tasks['day'+d]||[]).find(x=>x.id===id);if(t)return t;}return null;}
+function openTask(id){const task=findTask(id);if(!task)return;let body=`<span class="eyebrow">${task.category.toUpperCase()}</span><h2>${task.title}</h2><p>${task.description}</p><div class="task-meta"><span>${task.estimatedMinutes} minutes</span><span>${money(task.reward)} progress</span></div>`;if(task.url&&!placeholder(task.url))body+=`<button class="secondary-btn" id="externalTaskOpen">OPEN APPROVED CONTENT</button><p class="muted">Return to this tab and complete the local requirement. Opening the page alone does not complete the task.</p>`;if(task.verificationType==='prediction')body+=predictionForm(task);else if(task.verificationType.includes('quiz'))body+=quizForm(task);else if(task.verificationType==='message_submitted')body+=`<label>Your congratulatory message</label><textarea id="taskMessage" rows="5" minlength="${task.minimumLength||40}" placeholder="Write a respectful message..."></textarea>`;else if(task.verificationType==='supporter_card_created')body+=`<label>Name on supporter card</label><input id="cardName" placeholder="Your name"/><label>Your final prediction</label><input id="cardPrediction" placeholder="Your wedding prediction"/>`;else if(task.verificationType==='verified_referral')body+=`<div class="question-block"><strong>Verified supporters: ${state.referrals} of ${task.requiredReferrals}</strong><p>Static preview cannot verify real referrals. Use the browser-local preview control only for testing.</p></div>`;else if(task.verificationType==='manual_review')body+=`<div class="question-block"><p>Review complete activities and submit this task for administrator review.</p></div>`;body+=`<button id="completeTask" class="primary-btn">${task.verificationType==='verified_referral'?'SUBMIT FOR VERIFICATION':'COMPLETE TASK'}</button>`;$('#taskModalBody').innerHTML=body;$('#taskModal').classList.remove('hidden');if($('#externalTaskOpen'))$('#externalTaskOpen').onclick=()=>{window.open(task.url,'_blank','noopener');sessionStorage.setItem('returned:'+task.id,'opened');};$('#completeTask').onclick=()=>completeTask(task);}
+function predictionForm(task){return `<div class="question-block"><strong>${task.question}</strong>${task.options.map(o=>`<label><input type="radio" name="prediction" value="${o}"> ${o}</label>`).join('')}</div>`;}
+function quizForm(task){const count=task.requiredAnswers||3;return Array.from({length:count},(_,i)=>`<div class="question-block"><strong>Question ${i+1}</strong><p>${quizQuestion(task.category,i)}</p><label><input type="radio" name="q${i}" value="a"> Option A</label><label><input type="radio" name="q${i}" value="b"> Option B</label></div>`).join('');}
+function quizQuestion(category,i){const sets={peller:['Which featured moment stood out most?','What quality best describes the featured story?','Which celebration detail was highlighted?','Which fan value was most visible?','Which moment would you share?'],jarvis:['Which style option was featured?','Which colour best matches the theme?','What detail made the look distinctive?'],couple:['Which colour is central to the campaign?','What year is the celebration?','Which activity is part of the supporter journey?','What is the data reward shown?','Which couple is being celebrated?','What is the cash target?','What is the airtime amount?','How many earning days are included?'],review:['Have you reviewed your completed tasks?']};return (sets[category]||sets.couple)[i%(sets[category]||sets.couple).length];}
+function completeTask(task){if(task.verificationType==='prediction'){const selected=document.querySelector('input[name=prediction]:checked');if(!selected)return alert('Choose one prediction.');state.answers[task.id]=selected.value;}if(task.verificationType.includes('quiz')){for(let i=0;i<(task.requiredAnswers||3);i++){if(!document.querySelector(`input[name=q${i}]:checked`))return alert('Answer every question before submitting.');}if(task.url&&!placeholder(task.url)&&!sessionStorage.getItem('returned:'+task.id))return alert('Open the approved content first, then return to complete the questions.');}if(task.verificationType==='message_submitted'){const v=$('#taskMessage').value.trim();if(v.length<(task.minimumLength||40))return alert('Your message is too short.');state.answers[task.id]=v;}if(task.verificationType==='supporter_card_created'){if(!$('#cardName').value.trim()||!$('#cardPrediction').value.trim())return alert('Complete both supporter card fields.');state.answers[task.id]={name:$('#cardName').value.trim(),prediction:$('#cardPrediction').value.trim()};}if(task.verificationType==='verified_referral'){if(state.referrals<(task.requiredReferrals||1)){state.pending[task.id]=true;save();closeModal();render();return alert('Submitted for verification. No reward progress is credited until the required referrals are verified.');}}if(task.verificationType==='manual_review'){state.pending[task.id]=true;save();closeModal();render();return alert('Submitted for administrator review.');}creditTask(task);}
+function creditTask(task){if(state.completed[task.id])return;const cap=CONFIG.campaign.dailyCaps[state.day];const remaining=Math.max(0,cap-state.dailyEarned[state.day]);const credit=Math.min(task.reward,remaining);state.completed[task.id]=true;delete state.pending[task.id];state.dailyEarned[state.day]+=credit;state.earned+=credit;save();closeModal();render();maybeShowSponsored();}
+function maybeShowSponsored(){const session=JSON.parse(sessionStorage.getItem(SESSION_KEY)||'{}');if(session.sponsoredShown)return;const ad=(CONFIG.ads.sponsoredTask||[]).find(a=>a.active&&a.minimumDay<=state.day&&!placeholder(a.url));if(!ad)return;session.sponsoredShown=true;sessionStorage.setItem(SESSION_KEY,JSON.stringify(session));$('#sponsoredTitle').textContent=ad.name;$('#sponsoredPanel').classList.remove('hidden');$('#openSponsored').onclick=()=>window.open(ad.url,'_blank','noopener');}
+function closeModal(){$('#taskModal').classList.add('hidden');}
+$$('[data-close-modal]').forEach(b=>b.onclick=closeModal);$$('[data-close-sponsored]').forEach(b=>b.onclick=()=>$('#sponsoredPanel').classList.add('hidden'));
+$('#go').onclick=async()=>{if(!$('#year').value)return alert('Select your network.');state.network=$('#year').value;$('#intro').classList.add('hidden');$('#loader').classList.remove('hidden');for(let i=0;i<=100;i++){if(i%5===0)$('#num').textContent=i+'%';await new Promise(r=>setTimeout(r,18));}$('#loader').classList.add('hidden');$('#info').classList.remove('hidden');};
+$('#confirm').onclick=()=>{const phone=$('#name').value.replace(/\D/g,'');if(phone.length<7){$('.error').classList.remove('hidden');return;}state.phone=phone;state.onboarded=true;save();render();window.scrollTo({top:$('#dashboard').offsetTop,behavior:'smooth'});};
+$('#name').oninput=()=>$('.error').classList.add('hidden');
+$('#copyReferral').onclick=async()=>{const code='PJ-'+(state.phone.slice(-4)||Math.floor(Math.random()*9999));try{await navigator.clipboard.writeText(location.origin+'/?ref='+code);alert('Referral link copied. Real referral credit requires backend verification.');}catch{alert('Referral code: '+code);}};
+$('#submitEligibility').onclick=()=>{state.eligibilitySubmitted=true;save();alert('Eligibility submitted for administrator review. No payment or reward delivery has been marked complete.');};
+$('#openAdminPreview').onclick=()=>$('#adminPreview').classList.remove('hidden');$('#closeAdminPreview').onclick=()=>$('#adminPreview').classList.add('hidden');$$('[data-admin]').forEach(btn=>btn.onclick=()=>{const action=btn.dataset.admin;if(action==='approve-referral'){state.referrals+=1;for(const id of Object.keys(state.pending)){const t=findTask(id);if(t&&t.verificationType==='verified_referral'&&state.referrals>=t.requiredReferrals)creditTask(t);}save();render();}if(action==='next-day'){if(state.day<3){state.day+=1;state.streak=Math.max(state.streak,state.day);save();render();}else alert('Already on Day 3.');}if(action==='reset'){localStorage.removeItem(STORAGE_KEY);sessionStorage.clear();location.reload();}});
+render();
 })();
