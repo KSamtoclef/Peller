@@ -18,20 +18,12 @@
     <div class="ticker"><span>PELLER AND JARVIS WEDDING CELEBRATION • 3-DAY SUPPORTER JOURNEY • ₦25,000 CASH TARGET • ₦10,000 AIRTIME • 20GB DATA</span></div>
     <section class="live-counter"><span>Till Today</span><strong id="countdowntimer">4548</strong><span>supporters have joined the celebration journey</span></section>
     <section id="onboarding" class="panel onboarding-panel">
-      <div id="intro">
-        <span class="eyebrow">POWERED BY: Peller And Jarvis</span>
-        <h1>Join the 3-Day Wedding Celebration Journey</h1>
-        <p>Complete meaningful quizzes, predictions, creative fan activities and verified supporter milestones across three days.</p>
-        <div class="reward-strip"><div><strong>₦25,000</strong><span>Cash target</span></div><div><strong>₦10,000</strong><span>Airtime</span></div><div><strong>20GB</strong><span>Data</span></div></div>
-        <label for="year">Select your network</label>
-        <select id="year"><option value="">---SELECT YOUR NETWORK---</option><option>MTN</option><option>Airtel</option><option>Glo</option><option>9-Mobile</option></select>
-        <button id="go" class="primary-btn">GET STARTED</button>
-      </div>
+      <div id="intro"><span class="eyebrow">POWERED BY: Peller And Jarvis</span><h1>Join the 3-Day Wedding Celebration Journey</h1><p>Complete meaningful quizzes, predictions, creative fan activities and verified supporter milestones across three days.</p><div class="reward-strip"><div><strong>₦25,000</strong><span>Cash target</span></div><div><strong>₦10,000</strong><span>Airtime</span></div><div><strong>20GB</strong><span>Data</span></div></div><label for="year">Select your network</label><select id="year"><option value="">---SELECT YOUR NETWORK---</option><option>MTN</option><option>Airtel</option><option>Glo</option><option>9-Mobile</option></select><button id="go" class="primary-btn">GET STARTED</button></div>
       <div id="loader" class="hidden loading-state"><div class="spin"></div><p>Preparing your celebration journey...</p><strong id="num">0%</strong></div>
       <div id="info" class="hidden"><h2>Enter your mobile number</h2><p class="muted">Used only in this browser for the preview journey. It is not transmitted.</p><input type="tel" inputmode="numeric" placeholder="Type your number here" id="name" autocomplete="off" /><button id="confirm" class="primary-btn">CONTINUE</button><p class="error hidden">Please enter a valid mobile number.</p></div>
     </section>
     <section id="dashboard" class="hidden dashboard">
-      <div class="notice-banner"><strong>Preview status:</strong> Progress is stored in this browser. Cash, airtime, data, referrals and withdrawals require a real backend and admin confirmation before production.</div>
+      <div class="notice-banner"><strong>Preview status:</strong> Progress is stored in this browser. Cash, airtime, data, referrals and withdrawals require a real backend and admin confirmation before production. <button id="openAdminPreviewTop" class="text-btn">Preview controls</button></div>
       <section class="dashboard-hero panel"><div><span class="eyebrow">YOUR CELEBRATION DASHBOARD</span><h2 id="welcomeName">Welcome, Supporter</h2><p id="nextTaskText">Complete your next required activity.</p></div><div class="day-pill">Day <span id="currentDay">1</span> of 3</div></section>
       <section class="reward-grid"><article class="stat-card featured"><span>Campaign progress</span><strong id="cashProgress">₦0 / ₦25,000</strong><div class="mini-progress"><i id="cashBar"></i></div><small>Not a payment confirmation</small></article><article class="stat-card"><span>Today’s limit</span><strong id="dailyProgress">₦0 / ₦5,000</strong></article><article class="stat-card"><span>Supporter level</span><strong id="supporterLevel">Celebration Guest</strong></article><article class="stat-card"><span>Verified supporters</span><strong id="referralProgress">0 verified</strong></article><article class="stat-card"><span>3-day streak</span><strong id="streakValue">Day 1</strong></article><article class="stat-card"><span>Airtime & data</span><strong>Awaiting eligibility</strong></article></section>
       <section class="panel section-head"><div><span class="eyebrow">DAY <span id="taskDayLabel">1</span> ACTIVITIES</span><h2>Available Celebration Tasks</h2></div><button id="copyReferral" class="secondary-btn">COPY REFERRAL CODE</button></section>
@@ -44,7 +36,7 @@
   </main>
   <div id="taskModal" class="modal hidden" role="dialog" aria-modal="true"><div class="modal-card"><button class="modal-close" data-close-modal>×</button><div id="taskModalBody"></div></div></div>
   <div id="sponsoredPanel" class="modal hidden"><div class="modal-card sponsored-card"><button class="modal-close" data-close-sponsored>×</button><span class="sponsored-label">Sponsored</span><h3 id="sponsoredTitle">Sponsored Reward</h3><p>This optional opportunity is clearly separated from your celebration activity.</p><button id="openSponsored" class="primary-btn">OPEN SPONSORED TASK</button></div></div>
-  <aside id="adminPreview" class="admin-drawer hidden"><button id="closeAdminPreview">×</button><h3>Preview controls</h3><p>Browser-local testing only. These controls are not production verification.</p><button data-admin="approve-referral">Approve one demo referral</button><button data-admin="next-day">Advance preview day</button><button data-admin="reset">Reset browser progress</button></aside>
-  <script src="js/config.js?v=4"></script><script src="js/app.js?v=4"></script>
+  <aside id="adminPreview" class="admin-drawer hidden"><button id="closeAdminPreview">×</button><h3>Preview controls</h3><p>Browser-local testing only. These controls are not production verification.</p><button data-admin="approve-referral">Approve one demo referral</button><button data-admin="approve-pending">Approve pending demo review</button><button data-admin="next-day">Advance preview day</button><button data-admin="reset">Reset browser progress</button></aside>
+  <script src="js/config.js?v=4"></script><script src="js/app.js?v=5"></script>
 </body>
 </html>
