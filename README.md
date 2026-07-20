@@ -2,13 +2,24 @@
 
 Static HTML/CSS/JavaScript reconstruction created from the supplied HTML source.
 
-## Important preview behavior
+## Restored structure
 
-- All external advertising, affiliate, tracking, WhatsApp, Blogger, recommendation and redirect destinations are disabled.
-- The mobile-number value is used only in memory to display the next screen and is not transmitted or permanently stored.
-- Share progress is simulated locally and stored only in `localStorage` under `peller-preview-share-progress`.
-- The original Back-button/hash advertising redirect is disabled.
-- Third-party verification scripts, counters and tracking widgets are not loaded.
+- Original visible page flow, wording, counters, comments, progress stages and activation-button positions are retained.
+- Original public reaction/profile image references are restored with local fallbacks.
+- Google Fonts, Blogger profile metadata and the SuperCounters block are restored.
+- WhatsApp message structure and share-progress logic are retained, but real contact distribution remains disabled in this preview.
+- The mobile-number value is used only in memory and is not transmitted or permanently stored.
+- Share progress is stored locally under `peller-preview-share-progress`.
+
+## Editable URL placeholders
+
+The removed direct destinations were not deleted from the code structure. Their slots now use:
+
+- `PASTE_YOUR_AD_URL_HERE`
+- `PASTE_BUSINESS_PLAN_URL_HERE`
+- `PASTE_PAGE_RETURN_URL_HERE`
+
+These placeholders appear in the final activation buttons and in `js/app.js` configuration values.
 
 ## Local preview
 
