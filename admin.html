@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Peller & Jarvis Campaign Admin Preview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/admin.css?v=1" />
+</head>
+<body>
+  <header class="admin-header">
+    <div><span class="eyebrow">BROWSER-LOCAL ADMIN PREVIEW</span><h1>Celebration Campaign Manager</h1><p>Manage task and ad configuration locally. This is not a secure production admin panel.</p></div>
+    <a class="site-link" href="index.html">Open campaign</a>
+  </header>
+  <main class="admin-shell">
+    <section class="warning">Changes made here are stored only in this browser. A real admin panel still requires authentication, a database and server-side permissions.</section>
+    <section class="summary-grid" id="summaryGrid"></section>
+    <nav class="tabs"><button data-tab="tasks" class="active">Tasks</button><button data-tab="ads">Ads</button><button data-tab="analytics">Local analytics</button><button data-tab="data">Import / Export</button></nav>
+    <section id="tasksTab" class="tab-panel">
+      <div class="toolbar"><select id="dayFilter"><option value="day1">Day 1</option><option value="day2">Day 2</option><option value="day3">Day 3</option></select><button id="addTask">Add task</button><button id="saveTasks" class="primary">Save task changes</button></div>
+      <div id="taskEditor"></div>
+    </section>
+    <section id="adsTab" class="tab-panel hidden">
+      <div class="toolbar"><select id="placementFilter"><option value="native">Native</option><option value="inline">Inline</option><option value="halfScreen">Half-screen</option><option value="sponsoredTask">Sponsored task</option><option value="celebrationFeed">Celebration feed</option></select><button id="addAd">Add ad</button><button id="saveAds" class="primary">Save ad changes</button></div>
+      <div id="adEditor"></div>
+    </section>
+    <section id="analyticsTab" class="tab-panel hidden"><div id="analyticsView"></div></section>
+    <section id="dataTab" class="tab-panel hidden">
+      <div class="data-actions"><button id="exportConfig">Export configuration</button><label class="file-btn">Import configuration<input id="importConfig" type="file" accept="application/json" /></label><button id="resetOverrides" class="danger">Reset admin overrides</button><button id="clearProgress" class="danger">Clear campaign progress</button></div>
+      <textarea id="configPreview" rows="18" readonly></textarea>
+    </section>
+  </main>
+  <template id="taskTemplate"><article class="editor-card"><div class="editor-head"><strong class="task-heading">Task</strong><div><button data-move="up">↑</button><button data-move="down">↓</button><button data-remove class="danger small">Remove</button></div></div><div class="form-grid"><label>Task ID<input data-field="id" /></label><label>Title<input data-field="title" /></label><label class="wide">Description<textarea data-field="description" rows="2"></textarea></label><label>Category<select data-field="category"><option>peller</option><option>jarvis</option><option>couple</option><option>creative</option><option>referral</option><option>sponsored</option><option>review</option></select></label><label>Estimated minutes<input data-field="estimatedMinutes" type="number" min="1" /></label><label>Reward progress<input data-field="reward" type="number" min="0" /></label><label>Verification<select data-field="verificationType"><option>quiz_completed</option><option>prediction_submitted</option><option>prediction</option><option>return_and_quiz</option><option>verified_referral</option><option>manual_review</option><option>approved_callback</option><option>message_submitted</option><option>supporter_card_created</option></select></label><label class="wide">URL<input data-field="url" placeholder="PASTE_APPROVED_URL_HERE" /></label><label>Required answers<input data-field="requiredAnswers" type="number" min="0" /></label><label>Required referrals<input data-field="requiredReferrals" type="number" min="0" /></label><label class="check"><input data-field="required" type="checkbox" /> Required</label><label class="check"><input data-field="active" type="checkbox" /> Active</label></div></article></template>
+  <template id="adTemplate"><article class="editor-card"><div class="editor-head"><strong class="ad-heading">Advertisement</strong><button data-remove class="danger small">Remove</button></div><div class="form-grid"><label>ID<input data-field="id" /></label><label>Name<input data-field="name" /></label><label>Label<input data-field="label" /></label><label>Placement<input data-field="placement" /></label><label class="wide">URL<input data-field="url" placeholder="PASTE_AD_URL_HERE" /></label><label>Minimum day<input data-field="minimumDay" type="number" min="1" max="3" /></label><label>Maximum shows/session<input data-field="maximumShowsPerSession" type="number" min="1" /></label><label>Cooldown minutes<input data-field="cooldownMinutes" type="number" min="0" /></label><label class="check"><input data-field="active" type="checkbox" /> Active</label></div></article></template>
+  <script src="js/config.js?v=4"></script><script src="js/config-loader.js?v=1"></script><script src="js/admin.js?v=1"></script>
+</body>
+</html>
