@@ -4,145 +4,166 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#611126" />
-  <title>Peller & Jarvis 3-Day Celebration Journey</title>
-  <meta property="og:title" content="Peller & Jarvis 3-Day Celebration Journey" />
-  <meta property="og:description" content="Join the celebration, complete fan challenges and progress through a 3-day reward journey." />
-  <meta property="og:image" content="676443C7-1C74-4A8C-AC08-05F20D05E502.png?v=7" />
+  <title>Peller & Jarvis 3-Day Wedding Reward Journey</title>
+  <meta property="og:title" content="Peller & Jarvis 3-Day Wedding Reward Journey" />
+  <meta property="og:description" content="Join the celebration and complete a guided three-day fan reward journey." />
+  <meta property="og:image" content="676443C7-1C74-4A8C-AC08-05F20D05E502.png?v=9" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=7" />
+  <link rel="stylesheet" href="css/style.css?v=9" />
 </head>
 <body>
   <main class="site-shell">
-    <section class="hero-image"><img src="676443C7-1C74-4A8C-AC08-05F20D05E502.png?v=7" alt="Peller and Jarvis 2026 wedding celebration" /></section>
-    <div class="ticker"><span>PELLER & JARVIS WEDDING CELEBRATION • ₦25,000 CASH • ₦10,000 AIRTIME • 20GB DATA • 3-DAY FAN JOURNEY</span></div>
+    <section class="hero-image"><img src="676443C7-1C74-4A8C-AC08-05F20D05E502.png?v=9" alt="Peller and Jarvis wedding celebration" /></section>
 
-    <section id="onboarding" class="welcome-wrap">
-      <div class="welcome-card">
-        <span class="eyebrow">LET’S CELEBRATE 🎉</span>
-        <h1>Join the Peller & Jarvis Celebration</h1>
-        <p>Enter your details to begin your 3-day reward journey.</p>
+    <section id="landing" class="landing-wrap">
+      <div class="landing-card">
+        <span class="eyebrow">PELLER & JARVIS WEDDING CELEBRATION</span>
+        <h1>3-Day Wedding Reward Journey</h1>
+        <p>Complete fan conversations, sponsored opportunities and sharing stages across three days.</p>
         <div class="reward-strip">
-          <div><strong>₦25,000</strong><span>Cash</span></div>
+          <div><strong>Up to ₦25,000</strong><span>Cash progress</span></div>
           <div><strong>₦10,000</strong><span>Airtime</span></div>
           <div><strong>20GB</strong><span>Data</span></div>
         </div>
+        <button id="openRegistration" class="primary-btn hero-cta">JOIN THE CELEBRATION</button>
+        <small>Rewards require completion of published activities and eligibility checks.</small>
+      </div>
+    </section>
+
+    <section id="registration" class="welcome-wrap hidden">
+      <div class="welcome-card">
+        <span class="eyebrow">CREATE YOUR CELEBRATION PROFILE</span>
+        <h2>Join the Peller & Jarvis Celebration</h2>
+        <p>Enter your details to begin your three-day journey.</p>
         <form id="joinForm" novalidate>
           <label for="firstName">First Name</label>
-          <input id="firstName" name="firstName" autocomplete="given-name" placeholder="Your first name" maxlength="40" required />
+          <input id="firstName" autocomplete="given-name" maxlength="40" required />
           <label for="email">Email Address</label>
-          <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" maxlength="120" required />
+          <input id="email" type="email" autocomplete="email" maxlength="120" required />
           <label for="phone">Mobile Number</label>
-          <input id="phone" name="phone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="08012345678" maxlength="15" required />
-          <label for="network">Select Network</label>
-          <select id="network" name="network" required><option value="">Choose your network</option><option>MTN</option><option>Airtel</option><option>Glo</option><option>9-Mobile</option></select>
-          <button class="primary-btn hero-cta" type="submit">JOIN THE CELEBRATION</button>
+          <input id="phone" type="tel" inputmode="numeric" autocomplete="tel" maxlength="15" required />
+          <label for="network">Network</label>
+          <select id="network" required><option value="">Choose network</option><option>MTN</option><option>Airtel</option><option>Glo</option><option>9-Mobile</option></select>
+          <button type="submit" class="primary-btn">CONTINUE</button>
           <p id="joinError" class="form-error hidden">Please complete all fields correctly.</p>
-          <small>Your progress is saved on this device. Reward delivery still requires campaign verification.</small>
         </form>
       </div>
     </section>
 
-    <section id="dashboard" class="dashboard hidden">
-      <section class="welcome-panel panel" data-view="home">
-        <div>
-          <span class="eyebrow">DAY <span id="currentDay">1</span> OF 3</span>
-          <h2 id="welcomeName">Welcome, Fan 🎉</h2>
-          <p id="dayMessage">Earn ₦5,000 today to move closer to your full reward.</p>
+    <section id="journeyIntro" class="intro-wrap hidden">
+      <div class="intro-card">
+        <div class="celebration-mark">🎉</div>
+        <span class="eyebrow">YOUR JOURNEY IS READY</span>
+        <h2 id="introWelcome">Welcome!</h2>
+        <p>Your 3-Day Reward Journey has started.</p>
+        <div class="reward-strip compact">
+          <div><strong>₦25,000</strong><span>Cash target</span></div>
+          <div><strong>₦10,000</strong><span>Airtime</span></div>
+          <div><strong>20GB</strong><span>Data</span></div>
         </div>
-        <div class="day-pill">Day <span id="dayPill">1</span></div>
+        <button id="startDay" class="primary-btn hero-cta">START DAY 1</button>
+      </div>
+    </section>
+
+    <section id="app" class="app hidden">
+      <header class="app-header">
+        <div><span class="eyebrow">DAY <span id="dayNumber">1</span> OF 3</span><h2 id="welcomeName">Welcome</h2></div>
+        <div class="day-value"><span>Available today</span><strong id="todayAvailable">₦8,000</strong></div>
+      </header>
+
+      <section class="progress-card">
+        <div class="progress-head"><div><span>3-Day Reward Progress</span><strong id="earnedTotal">₦0</strong></div><div><span>Remaining</span><strong id="remainingTotal">₦25,000</strong></div></div>
+        <div class="progress-track"><i id="overallBar"></i></div>
+        <div class="reward-summary-grid">
+          <div><span>Cash</span><strong id="cashSummary">₦0 / ₦25,000</strong></div>
+          <div><span>Airtime</span><strong id="airtimeSummary">₦0 / ₦10,000</strong></div>
+          <div><span>Data</span><strong id="dataSummary">0GB / 20GB</strong></div>
+        </div>
+        <div class="day-timeline"><span id="dayOneState">Day 1 — In Progress</span><span id="dayTwoState">Day 2 — Locked</span><span id="dayThreeState">Day 3 — Locked</span></div>
       </section>
 
-      <section class="journey-steps panel" aria-label="Journey progress" data-view="home earn">
-        <div class="journey-title"><span>Your celebration journey</span><strong id="journeyStepText">Earn Today</strong></div>
-        <div class="steps-row">
-          <div class="journey-step" data-step="joined"><i>✓</i><span>Joined</span></div>
-          <div class="journey-step" data-step="earn"><i>1</i><span>Earn Today</span></div>
-          <div class="journey-step" data-step="invite"><i>2</i><span>Invite Fans</span></div>
-          <div class="journey-step" data-step="bonus"><i>3</i><span>Unlock Bonus</span></div>
-          <div class="journey-step" data-step="goal"><i>4</i><span>Daily Goal</span></div>
-        </div>
-      </section>
-
-      <section id="nextMoveCard" class="next-move-card panel" data-view="home earn">
+      <section class="next-move-card">
         <span class="eyebrow">YOUR NEXT MOVE</span>
-        <div class="next-move-main">
-          <div class="next-icon" id="nextMoveIcon">🔥</div>
-          <div><h2 id="nextMoveTitle">Peller Fan Challenge</h2><p id="nextMoveDescription">Complete your next celebration activity.</p></div>
+        <h2 id="nextMoveTitle">Start Celebration Chat</h2>
+        <p id="nextMoveText">Complete six meaningful fan replies to unlock today’s sponsored opportunity.</p>
+        <div class="next-meta"><span id="nextMoveMeta">0 of 6 replies</span><strong id="nextMoveReward">₦3,000 stage value</strong></div>
+        <button id="nextMoveButton" class="primary-btn hero-cta">START CHAT</button>
+      </section>
+
+      <section id="chatStage" class="stage-card hidden">
+        <div class="stage-heading"><div><span class="eyebrow">CELEBRATION CHAT</span><h2 id="chatTitle">Today’s Fan Conversation</h2></div><div class="stage-value"><span>Stage value</span><strong id="chatReward">₦3,000</strong></div></div>
+        <div class="chat-progress"><span id="chatProgressText">0 of 6 replies completed</span><div class="progress-track small"><i id="chatBar"></i></div></div>
+        <div id="chatMessages" class="chat-box"></div>
+        <div id="replyOptions" class="reply-options"></div>
+      </section>
+
+      <section id="sponsorStage" class="stage-card sponsored-stage hidden">
+        <div class="sponsored-label">SPONSORED OPPORTUNITY</div>
+        <h2 id="sponsorTitle">Sponsored Earning Opportunity</h2>
+        <p id="sponsorInstructions">Open today’s approved opportunity, perform the published action, then return here.</p>
+        <div class="requirement-box"><strong>Before you leave</strong><span id="sponsorRequirement">Open the opportunity, follow its instructions, return and complete the local follow-up.</span></div>
+        <div class="stage-value-row"><span>Available stage value</span><strong id="sponsorReward">₦3,000</strong></div>
+        <button id="openSponsor" class="primary-btn">OPEN OPPORTUNITY</button>
+        <button id="confirmReturn" class="secondary-btn hidden">I HAVE RETURNED</button>
+        <div id="sponsorFollowup" class="followup hidden">
+          <label for="sponsorAnswer">What action did the opportunity ask you to complete?</label>
+          <input id="sponsorAnswer" placeholder="Enter a short answer" maxlength="120" />
+          <button id="submitSponsor" class="primary-btn">SUBMIT FOR REVIEW</button>
         </div>
-        <div class="next-reward"><span id="nextMoveMeta">About 3 minutes</span><strong id="nextMoveReward">Earn ₦1,000</strong></div>
-        <button id="continueEarning" class="primary-btn hero-cta">CONTINUE EARNING</button>
+        <small>Opening a link alone does not confirm an external conversion. This stage remains subject to the published verification rule.</small>
       </section>
 
-      <section class="reward-overview panel" data-view="home rewards">
-        <div class="section-kicker">YOUR 3-DAY REWARD</div>
-        <div class="main-rewards"><div><strong>₦25,000</strong><span>Cash</span></div><div><strong>₦10,000</strong><span>Airtime</span></div><div><strong>20GB</strong><span>Data</span></div></div>
+      <section id="shareStage" class="stage-card hidden">
+        <div class="stage-heading"><div><span class="eyebrow">SHARING REWARD</span><h2>Invite More Fans Into the Celebration</h2></div><div class="stage-value"><span>Stage value</span><strong id="shareReward">₦2,000</strong></div></div>
+        <p>Share your invitation and return to continue. Qualified referrals are counted only when the approved rule is met.</p>
+        <div class="share-actions"><button id="shareWhatsapp" class="whatsapp-btn">SHARE ON WHATSAPP</button><button id="copyLink" class="secondary-btn">COPY INVITATION LINK</button></div>
+        <div class="share-status"><span id="shareStatus">Sharing stage not started</span><strong id="qualifiedFans">0 qualified fans</strong></div>
+        <button id="completeShare" class="primary-btn hidden">CONTINUE AFTER SHARING</button>
       </section>
 
-      <section class="priority-grid" data-view="home rewards profile">
-        <article class="earnings-card">
-          <span>Your Earnings</span><strong id="cashEarned">₦0</strong><small>3-Day Goal: ₦25,000</small>
-          <div class="progress-track"><i id="cashBar"></i></div>
-          <p>Complete your 3-day journey to unlock withdrawal.</p>
-          <button id="howRewardsWork" class="info-link">How rewards work</button>
-        </article>
-        <article class="day-progress-card">
-          <span>Today’s Earning Goal</span><strong id="dailyProgress">₦0 of ₦5,000</strong>
-          <div class="progress-track light"><i id="dailyBar"></i></div>
-          <small id="dailyHint">You’re getting closer.</small>
-        </article>
+      <section id="claimStage" class="stage-card claim-stage hidden">
+        <div class="celebration-mark">🎉</div>
+        <span class="eyebrow">DAILY COMPLETION</span>
+        <h2>Claim Today’s Journey Progress</h2>
+        <p id="claimText">You completed today’s required stages.</p>
+        <div id="dailyBreakdown" class="breakdown"></div>
+        <button id="claimDay" class="primary-btn hero-cta">CLAIM TODAY’S REWARD</button>
       </section>
 
-      <section id="inviteSection" class="invite-card panel" data-view="invite home">
-        <div class="invite-head"><div><span class="eyebrow">BRING MORE FANS INTO THE CELEBRATION</span><h2 id="inviteTitle">Invite Fans to Unlock More</h2></div><div class="fan-count"><strong id="referralProgress">0 of 3</strong><span>fans joined</span></div></div>
-        <p id="inviteHint">Qualified referrals only. One more fan can unlock your next earning activity.</p>
-        <div id="fanIcons" class="fan-icons"></div>
-        <div class="invite-actions"><button id="shareWhatsapp" class="whatsapp-btn">INVITE ON WHATSAPP</button><button id="copyReferral" class="secondary-btn">COPY MY LINK</button></div>
+      <section id="dayComplete" class="stage-card complete-stage hidden">
+        <div class="celebration-mark">🎉</div>
+        <h2 id="dayCompleteTitle">Day 1 Complete</h2>
+        <p id="dayCompleteSummary">Your progress has been saved.</p>
+        <div id="countdownBox" class="countdown-box">Next day opens in <strong id="countdown">--:--:--</strong></div>
+        <button id="viewRewards" class="secondary-btn">VIEW MY PROGRESS</button>
       </section>
 
-      <section class="profile-strip panel" data-view="profile rewards home">
-        <div><span>Your Fan Level</span><strong id="supporterLevel">Celebration Guest</strong><small id="levelHint">Complete one activity to become an Official Fan.</small></div>
-        <div><span>Airtime</span><strong id="airtimeStatus">In Progress</strong></div>
-        <div><span>Data</span><strong id="dataStatus">In Progress</strong></div>
+      <section id="finalSummary" class="stage-card final-stage hidden">
+        <div class="celebration-mark">🏆</div>
+        <h2>3-Day Journey Completed</h2>
+        <div class="final-rewards"><div><span>Cash progress</span><strong>₦25,000</strong></div><div><span>Airtime</span><strong>₦10,000</strong></div><div><span>Data</span><strong>20GB</strong></div></div>
+        <p>Submission and delivery remain subject to administrator verification.</p>
+        <button id="withdrawCash" class="primary-btn">WITHDRAW CASH</button>
+        <button id="redeemBundle" class="secondary-btn">REDEEM AIRTIME & DATA</button>
+        <div id="requestStatus" class="request-status hidden"></div>
       </section>
 
-      <section id="activitiesSection" class="activities-section" data-view="earn">
-        <div class="section-heading"><div><span class="eyebrow">DAY <span id="activityDay">1</span></span><h2>Today’s Celebration Activities</h2><p>Pick up where you stopped.</p></div></div>
-        <div id="taskList" class="task-list"></div>
-      </section>
-
-      <section id="nextSession" class="goal-complete panel hidden" data-view="home earn">
-        <div class="celebration-burst">🎉</div><h2>TODAY’S GOAL COMPLETE</h2><p id="goalCompleteText">You earned today’s target.</p><span>Next celebration day opens after campaign approval.</span><button id="viewProgress" class="secondary-btn">VIEW MY PROGRESS</button>
-      </section>
-
-      <section id="eligibility" class="eligibility-card panel hidden" data-view="rewards home">
-        <span class="success-mark">✓</span><h2>Reward Journey Completed</h2><p>Your activity record is ready for review.</p>
-        <div class="main-rewards"><div><strong>₦25,000</strong><span>Cash</span></div><div><strong>₦10,000</strong><span>Airtime</span></div><div><strong>20GB</strong><span>Data</span></div></div>
-        <button id="submitEligibility" class="primary-btn">SUBMIT FOR REVIEW</button><small>Delivery is only confirmed after administrator approval.</small>
-      </section>
-
-      <section class="fan-feed panel" data-view="home">
-        <div class="social-summary"><span>💛 Fan reactions</span><span>Wedding celebration wall</span></div>
-        <article class="comment"><img src="assets/images/joseph.svg" alt=""/><div><strong>Joseph Emmanuel</strong><p>Congratulations Peller and Jarvis. Wishing you a beautiful celebration.</p><small>1m</small></div></article>
-        <article class="comment"><img src="assets/images/amahle.svg" alt=""/><div><strong>Amahle John</strong><p>Burgundy and gold will be perfect for the wedding!</p><small>4m</small></div></article>
+      <section id="rewardsPanel" class="stage-card hidden">
+        <span class="eyebrow">MY REWARDS</span>
+        <h2>Reward and Request Status</h2>
+        <div class="status-list"><div><span>Cash withdrawal</span><strong id="withdrawalStatus">Not eligible</strong></div><div><span>Airtime redemption</span><strong id="airtimeRequestStatus">Not eligible</strong></div><div><span>Data redemption</span><strong id="dataRequestStatus">Not eligible</strong></div></div>
       </section>
     </section>
   </main>
 
-  <nav id="bottomNav" class="bottom-nav hidden" aria-label="Mobile navigation">
-    <button data-nav="home" class="active"><span>⌂</span>Home</button>
-    <button data-nav="earn" class="earn-nav"><span>★</span>Earn</button>
-    <button data-nav="invite"><span>↗</span>Invite</button>
-    <button data-nav="rewards"><span>🎁</span>Rewards</button>
-    <button data-nav="profile"><span>●</span>Profile</button>
-  </nav>
+  <nav id="bottomNav" class="bottom-nav hidden"><button data-nav="home" class="active">Home</button><button data-nav="earn">Earn</button><button data-nav="share">Invite</button><button data-nav="rewards">Rewards</button></nav>
 
-  <div id="taskModal" class="modal hidden" role="dialog" aria-modal="true"><div class="modal-card"><button class="modal-close" data-close-modal>×</button><div id="taskModalBody"></div></div></div>
-  <div id="infoModal" class="modal hidden" role="dialog" aria-modal="true"><div class="modal-card"><button class="modal-close" data-close-info>×</button><h2>How rewards work</h2><p>Celebration earnings show your progress toward the published campaign goal. Referrals, eligibility, withdrawal, airtime and data remain subject to the campaign’s verification and approval process.</p></div></div>
-  <div id="sponsoredPanel" class="modal hidden"><div class="modal-card sponsored-card"><button class="modal-close" data-close-sponsored>×</button><span class="sponsored-label">Sponsored Opportunity</span><h3 id="sponsoredTitle">Featured Opportunity</h3><p>Explore the approved opportunity and return to continue. Opening it alone does not confirm completion.</p><button id="openSponsored" class="primary-btn">VIEW OPPORTUNITY</button></div></div>
-  <aside id="adminPreview" class="admin-drawer hidden"><button id="closeAdminPreview">×</button><h3>Developer preview</h3><p>Browser-local testing controls.</p><a href="admin.html" class="secondary-btn">OPEN CAMPAIGN MANAGER</a><button data-admin="approve-referral">Approve one demo referral</button><button data-admin="approve-pending">Approve pending review</button><button data-admin="next-day">Advance preview day</button><button data-admin="reset">Reset progress</button></aside>
+  <aside id="previewPanel" class="admin-drawer hidden"><button id="closePreview">×</button><h3>Developer Preview</h3><button data-preview="next-stage">Complete current stage</button><button data-preview="qualify-referral">Add qualified referral</button><button data-preview="next-day">Open next day</button><button data-preview="reset">Reset journey</button><a href="admin.html" class="secondary-btn">Open campaign manager</a></aside>
 
-  <script src="js/config.js?v=4"></script><script src="js/config-loader.js?v=1"></script><script src="js/app.js?v=7"></script>
+  <script src="js/config.js?v=9"></script>
+  <script src="js/config-loader.js?v=2"></script>
+  <script src="js/app.js?v=9"></script>
 </body>
 </html>
