@@ -1,9 +1,9 @@
 window.CELEBRATION_CONFIG={
   campaign:{cashTarget:25000,airtimeTarget:10000,dataTarget:20,dayUnlockHour:0},
   days:{
-    1:{cash:8000,airtime:0,data:0,chatReward:3000,sponsorReward:3000,shareReward:2000,bonusReward:0,chatGoal:6,sponsorUrl:'PASTE_DAY_1_SPONSORED_URL_HERE',sponsorTitle:'Day 1 Sponsored Earning Opportunity',requirement:'Complete the published action on the approved page, return here and answer the follow-up.'},
-    2:{cash:7000,airtime:5000,data:0,chatReward:2500,sponsorReward:2500,shareReward:1500,bonusReward:500,chatGoal:6,sponsorUrl:'PASTE_DAY_2_SPONSORED_URL_HERE',sponsorTitle:'Day 2 Sponsored Earning Opportunity',requirement:'Complete today’s approved activity, return and submit the local follow-up for review.'},
-    3:{cash:10000,airtime:5000,data:20,chatReward:3000,sponsorReward:3000,shareReward:2000,bonusReward:2000,chatGoal:6,sponsorUrl:'PASTE_DAY_3_SPONSORED_URL_HERE',sponsorTitle:'Final Sponsored Earning Opportunity',requirement:'Complete the approved premium activity, return and submit the required local follow-up.'}
+    1:{cash:8000,airtime:0,data:0,chatReward:3000,sponsorReward:3000,shareReward:2000,bonusReward:0,chatGoal:6,referralsRequired:3,sponsorUrl:'PASTE_DAY_1_SPONSORED_URL_HERE',sponsorTitle:'Day 1 Sponsored Earning Opportunity',requirement:'Complete the published action on the approved page, return here and answer the follow-up.'},
+    2:{cash:7000,airtime:5000,data:0,chatReward:2500,sponsorReward:2500,shareReward:1500,bonusReward:500,chatGoal:6,referralsRequired:4,sponsorUrl:'PASTE_DAY_2_SPONSORED_URL_HERE',sponsorTitle:'Day 2 Sponsored Earning Opportunity',requirement:'Complete today’s approved activity, return and submit the local follow-up for review.'},
+    3:{cash:10000,airtime:5000,data:20,chatReward:3000,sponsorReward:3000,shareReward:2000,bonusReward:2000,chatGoal:6,referralsRequired:5,sponsorUrl:'PASTE_DAY_3_SPONSORED_URL_HERE',sponsorTitle:'Final Sponsored Earning Opportunity',requirement:'Complete the approved premium activity, return and submit the required local follow-up.'}
   },
   sponsored:{day1:[],day2:[],day3:[]},
   chat:{
