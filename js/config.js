@@ -3,39 +3,28 @@ window.CELEBRATION_CONFIG = {
     cashTarget: 25000,
     airtimeReward: 10000,
     dataReward: '20GB',
-    dailyCaps: {1: 5000, 2: 8000, 3: 12000},
-    supporterLevels: [
-      {name:'Celebration Guest', min:0},
-      {name:'Loyal Supporter', min:3},
-      {name:'Gold Supporter', min:7},
-      {name:'VIP Supporter', min:12},
-      {name:'Wedding Legend', min:17}
-    ]
+    dailyCaps: {1: 5000, 2: 8000, 3: 12000}
   },
   tasks: {
     day1: [
-      {id:'entry_prediction',title:'Celebration Entry Challenge',description:'Confirm your network and choose your first wedding prediction.',category:'couple',estimatedMinutes:3,reward:500,url:'',verificationType:'prediction',question:'Which wedding colour do you expect to dominate?',options:['Burgundy and gold','White and gold','Green and gold','Blue and silver'],required:true,active:true},
-      {id:'peller_fan',title:'Peller Fan Challenge',description:'Review today’s featured Peller celebration content and answer three questions.',category:'peller',estimatedMinutes:5,reward:1000,url:'PASTE_PELLER_CONTENT_URL_HERE',verificationType:'return_and_quiz',requiredAnswers:3,required:true,active:true},
-      {id:'jarvis_prediction',title:'Jarvis Wedding Style Prediction',description:'Predict the wedding style that best represents Jarvis.',category:'jarvis',estimatedMinutes:4,reward:800,url:'',verificationType:'prediction',question:'Which style best represents Jarvis for the celebration?',options:['Royal traditional look','Modern luxury look','Classic white wedding look','Bold cultural fusion'],required:true,active:true},
-      {id:'couple_quiz',title:'Couple Celebration Quiz',description:'Complete five short questions about the wedding celebration campaign.',category:'couple',estimatedMinutes:5,reward:1200,url:'',verificationType:'quiz_completed',requiredAnswers:5,required:true,active:true},
-      {id:'referral_unlock_1',title:'First Referral Unlock',description:'Bring 2 verified supporters who complete their first celebration activity.',category:'referral',estimatedMinutes:5,reward:700,url:'',verificationType:'verified_referral',requiredReferrals:2,required:true,active:true},
-      {id:'sponsored_1',title:'Sponsored Celebration Task',description:'Open the approved sponsored opportunity, return and complete the follow-up question.',category:'sponsored',estimatedMinutes:4,reward:800,url:'PASTE_SPONSORED_TASK_URL_HERE',verificationType:'return_and_quiz',requiredAnswers:1,required:false,active:true,label:'Sponsored Reward'}
+      {id:'day1_wedding_pick',title:'Wedding Celebration Pick',description:'Choose the wedding colour you believe will lead the celebration.',category:'couple',estimatedMinutes:2,reward:500,url:'',verificationType:'prediction',question:'Which wedding colour will stand out most?',options:['Burgundy and gold','White and gold','Green and gold','Blue and silver'],required:true,active:true,stage:'opening'},
+      {id:'day1_fan_invite',title:'Bring 3 Fans Into the Celebration',description:'Share today’s invitation. Your next activities unlock after sharing; the reward is added when 3 qualified fans join.',category:'referral',estimatedMinutes:3,reward:2500,url:'',verificationType:'verified_referral',requiredReferrals:3,required:true,active:true,stage:'sharing'},
+      {id:'day1_sponsored_one',title:'Sponsored Celebration Opportunity',description:'Open the approved opportunity, complete the published action, return and finish the follow-up.',category:'sponsored',estimatedMinutes:5,reward:1000,url:'PASTE_DAY1_SPONSORED_URL_ONE_HERE',verificationType:'return_and_quiz',requiredAnswers:1,required:true,active:true,label:'Sponsored Opportunity',stage:'after_share'},
+      {id:'day1_sponsored_two',title:'Premium Fan Opportunity',description:'Complete a different approved opportunity and return for the local confirmation step.',category:'sponsored',estimatedMinutes:5,reward:1000,url:'PASTE_DAY1_SPONSORED_URL_TWO_HERE',verificationType:'return_and_quiz',requiredAnswers:1,required:true,active:true,label:'Sponsored Opportunity',stage:'after_share'}
     ],
     day2: [
-      {id:'peller_media',title:'Peller Media Challenge',description:'Review a new approved Peller page and complete a deeper quiz.',category:'peller',estimatedMinutes:7,reward:1500,url:'PASTE_PELLER_CONTENT_URL_HERE',verificationType:'return_and_quiz',requiredAnswers:5,required:true,active:true},
-      {id:'jarvis_choice',title:'Jarvis Fan Choice Challenge',description:'Compare wedding themes and choose the option that suits Jarvis best.',category:'jarvis',estimatedMinutes:5,reward:1200,url:'PASTE_JARVIS_CONTENT_URL_HERE',verificationType:'prediction',question:'Which wedding theme should Jarvis lead?',options:['Royal burgundy','Elegant white and gold','Emerald celebration','Midnight blue'],required:true,active:true},
-      {id:'couple_timeline',title:'Couple Timeline Activity',description:'Arrange approved celebration moments in the correct sequence.',category:'couple',estimatedMinutes:5,reward:1000,url:'',verificationType:'quiz_completed',requiredAnswers:4,required:true,active:true},
-      {id:'referral_unlock_2',title:'Verified Supporter Milestone',description:'Reach 3 verified supporters or help previous invitees finish their first activity.',category:'referral',estimatedMinutes:6,reward:1800,url:'',verificationType:'verified_referral',requiredReferrals:3,required:true,active:true},
-      {id:'premium_sponsored_2',title:'Premium Sponsored Task',description:'Complete today’s approved sponsored activity and return for the follow-up.',category:'sponsored',estimatedMinutes:5,reward:1500,url:'PASTE_SPONSORED_TASK_URL_HERE',verificationType:'return_and_quiz',requiredAnswers:2,required:false,active:true,label:'Sponsored Reward'},
-      {id:'fan_message',title:'Fan Message Submission',description:'Submit a respectful congratulatory message of at least 40 characters.',category:'creative',estimatedMinutes:4,reward:1000,url:'',verificationType:'message_submitted',minimumLength:40,required:true,active:true}
+      {id:'day2_peller_media',title:'New Peller Media Challenge',description:'Explore the new approved Peller celebration content and answer five quick questions.',category:'peller',estimatedMinutes:6,reward:1500,url:'PASTE_DAY2_PELLER_URL_HERE',verificationType:'return_and_quiz',requiredAnswers:5,required:true,active:true,stage:'opening'},
+      {id:'day2_fan_team',title:'Grow Your Fan Team',description:'Share today’s invitation. Activities unlock after sharing; the reward is added at 4 cumulative qualified fans.',category:'referral',estimatedMinutes:4,reward:3000,url:'',verificationType:'verified_referral',requiredReferrals:4,required:true,active:true,stage:'sharing'},
+      {id:'day2_jarvis_style',title:'Jarvis Wedding Style Challenge',description:'Choose the wedding theme you believe suits Jarvis best.',category:'jarvis',estimatedMinutes:4,reward:1200,url:'',verificationType:'prediction',question:'Which wedding theme should Jarvis lead?',options:['Royal burgundy','Elegant white and gold','Emerald celebration','Midnight blue'],required:true,active:true,stage:'after_share'},
+      {id:'day2_sponsored',title:'Day 2 Sponsored Opportunity',description:'Complete today’s approved opportunity and return for the follow-up questions.',category:'sponsored',estimatedMinutes:6,reward:1300,url:'PASTE_DAY2_SPONSORED_URL_HERE',verificationType:'return_and_quiz',requiredAnswers:2,required:true,active:true,label:'Sponsored Opportunity',stage:'after_share'},
+      {id:'day2_caption',title:'Wedding Caption Challenge',description:'Write a lively and respectful caption for the Peller and Jarvis celebration.',category:'creative',estimatedMinutes:4,reward:1000,url:'',verificationType:'message_submitted',minimumLength:35,required:true,active:true,stage:'after_share'}
     ],
     day3: [
-      {id:'final_quiz',title:'Final Peller & Jarvis Wedding Quiz',description:'Complete the final campaign quiz using approved celebration information.',category:'couple',estimatedMinutes:10,reward:3500,url:'PASTE_COUPLE_CONTENT_URL_HERE',verificationType:'quiz_completed',requiredAnswers:8,required:true,active:true},
-      {id:'final_prediction',title:'Final Wedding Prediction',description:'Submit your final predictions before the celebration deadline.',category:'couple',estimatedMinutes:5,reward:1800,url:'',verificationType:'prediction',question:'Which moment will become the biggest wedding trend?',options:['Traditional entrance','First dance','Couple outfit reveal','Family celebration'],required:true,active:true},
-      {id:'supporter_card',title:'Premium Fan Contribution',description:'Create your personalized supporter card with a prediction and badge.',category:'creative',estimatedMinutes:6,reward:1800,url:'',verificationType:'supporter_card_created',required:true,active:true},
-      {id:'referral_final',title:'Final Referral Milestone',description:'Complete the final milestone of 5 verified supporters.',category:'referral',estimatedMinutes:8,reward:2500,url:'',verificationType:'verified_referral',requiredReferrals:5,required:true,active:true},
-      {id:'final_sponsored',title:'Final Sponsored Reward Task',description:'Open the approved premium sponsored opportunity, return and complete the local follow-up.',category:'sponsored',estimatedMinutes:6,reward:1400,url:'PASTE_SPONSORED_TASK_URL_HERE',verificationType:'return_and_quiz',requiredAnswers:2,required:false,active:true,label:'Sponsored Reward'},
-      {id:'journey_review',title:'Final Journey Review',description:'Review your completed tasks, streak, supporter level and remaining requirements.',category:'review',estimatedMinutes:3,reward:1000,url:'',verificationType:'manual_review',required:true,active:true}
+      {id:'day3_final_quiz',title:'Final Wedding Quiz',description:'Complete the final Peller and Jarvis celebration quiz.',category:'couple',estimatedMinutes:8,reward:2500,url:'',verificationType:'quiz_completed',requiredAnswers:8,required:true,active:true,stage:'opening'},
+      {id:'day3_fan_wave',title:'Complete the Final Fan Wave',description:'Share the final invitation. Activities unlock after sharing; the reward is added at 5 cumulative qualified fans.',category:'referral',estimatedMinutes:5,reward:4000,url:'',verificationType:'verified_referral',requiredReferrals:5,required:true,active:true,stage:'sharing'},
+      {id:'day3_premium_sponsored',title:'Premium Sponsored Opportunity',description:'Complete the approved premium opportunity and return for verification.',category:'sponsored',estimatedMinutes:7,reward:2000,url:'PASTE_DAY3_SPONSORED_URL_ONE_HERE',verificationType:'return_and_quiz',requiredAnswers:2,required:true,active:true,label:'Sponsored Opportunity',stage:'after_share'},
+      {id:'day3_final_sponsored',title:'Final Sponsored Opportunity',description:'Complete the final approved opportunity and return for the local follow-up.',category:'sponsored',estimatedMinutes:7,reward:2000,url:'PASTE_DAY3_SPONSORED_URL_TWO_HERE',verificationType:'return_and_quiz',requiredAnswers:2,required:true,active:true,label:'Sponsored Opportunity',stage:'after_share'},
+      {id:'day3_supporter_card',title:'Create Your Wedding Supporter Card',description:'Add your name and final wedding prediction to your supporter card.',category:'creative',estimatedMinutes:5,reward:1500,url:'',verificationType:'supporter_card_created',required:true,active:true,stage:'after_share'}
     ]
   },
   ads: {
@@ -43,7 +32,7 @@ window.CELEBRATION_CONFIG = {
     inline: [],
     halfScreen: [],
     sponsoredTask: [
-      {id:'sponsored_demo',name:'Today’s Sponsored Reward',label:'Sponsored Reward',url:'PASTE_AD_URL_HERE',placement:'sponsoredTask',active:true,minimumDay:1,maximumShowsPerSession:1,cooldownMinutes:30}
+      {id:'sponsored_demo',name:'Today’s Sponsored Opportunity',label:'Sponsored Opportunity',url:'PASTE_AD_URL_HERE',placement:'sponsoredTask',active:true,minimumDay:1,maximumShowsPerSession:1,cooldownMinutes:30}
     ],
     celebrationFeed: []
   }
