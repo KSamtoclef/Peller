@@ -1,15 +1,17 @@
 (function(){
   'use strict';
   const KEY='pellerCelebrationAdminOverrides';
+  const VALID_STAGES=new Set(['opening','sharing','after_share']);
   function clone(value){return JSON.parse(JSON.stringify(value));}
-  function merge(base, overrides){
+  function validTaskDay(tasks){return Array.isArray(tasks)&&tasks.every(task=>task&&VALID_STAGES.has(task.stage));}
+  function merge(base,overrides){
     const result=clone(base);
     if(!overrides||typeof overrides!=='object')return result;
     if(overrides.campaign)result.campaign=Object.assign({},result.campaign,overrides.campaign);
     if(overrides.tasks){
       result.tasks=result.tasks||{};
       Object.keys(overrides.tasks).forEach(day=>{
-        if(Array.isArray(overrides.tasks[day]))result.tasks[day]=clone(overrides.tasks[day]);
+        if(validTaskDay(overrides.tasks[day]))result.tasks[day]=clone(overrides.tasks[day]);
       });
     }
     if(overrides.ads){
