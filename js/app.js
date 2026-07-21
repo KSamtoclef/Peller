@@ -1,29 +1,119 @@
 (function(){
 'use strict';
-const C=window.CELEBRATION_CONFIG,K='pellerJourneyFinal',$=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)],M=n=>'₦'+Number(n||0).toLocaleString('en-NG'),clone=v=>JSON.parse(JSON.stringify(v));
-const D={registered:false,introSeen:false,firstName:'',email:'',phone:'',network:'',day:1,activeStage:'chat',chatReplies:{1:0,2:0,3:0},chatHistory:{1:[],2:[],3:[]},missionAnswers:{1:{},2:{},3:{}},sponsor:{1:'locked',2:'locked',3:'locked'},shareOpened:{1:false,2:false,3:false},shared:{1:false,2:false,3:false},dayClaimed:{1:false,2:false,3:false},nextDayAt:null,referralCode:'',withdrawalStatus:'Not eligible',airtimeStatus:'Not eligible',dataStatus:'Not eligible',history:[]};
-function load(){try{const o=JSON.parse(localStorage.getItem(K)||'{}'),s=Object.assign(clone(D),o);for(const k of ['chatReplies','chatHistory','missionAnswers','sponsor','shareOpened','shared','dayClaimed'])s[k]=Object.assign(clone(D[k]),o[k]||{});s.history=Array.isArray(o.history)?o.history:[];return s}catch{return clone(D)}}let S=load();
-const save=()=>localStorage.setItem(K,JSON.stringify(S)),log=(type,details={})=>{S.history.push({type,details,at:new Date().toISOString()});S.history=S.history.slice(-250);save()},cfg=(d=S.day)=>C.days[d],missions=(d=S.day)=>C.missions[d]||[],allDone=()=>[1,2,3].every(d=>S.dayClaimed[d]),cash=()=>[1,2,3].reduce((n,d)=>n+(S.dayClaimed[d]?cfg(d).cash:0),0),air=()=>[1,2,3].reduce((n,d)=>n+(S.dayClaimed[d]?cfg(d).airtime:0),0),data=()=>[1,2,3].reduce((n,d)=>n+(S.dayClaimed[d]?cfg(d).data:0),0),esc=v=>String(v||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-function show(id){['landing','registration','journeyIntro','app'].forEach(x=>$('#'+x).classList.toggle('hidden',x!==id));$('#bottomNav').classList.toggle('hidden',id!=='app')}
-function pendingMission(d=S.day){return missions(d).find(x=>S.chatReplies[d]>=x.afterReply&&!S.missionAnswers[d][x.id])||null}
-function chatDone(d=S.day){return S.chatReplies[d]>=cfg(d).chatGoal&&missions(d).every(x=>S.missionAnswers[d][x.id])}
-function verified(d=S.day){return chatDone(d)&&S.sponsor[d]==='verified'&&S.shared[d]}
-function stage(){const d=S.day;if(S.dayClaimed[d])return d===3?'final':'complete';if(!chatDone(d))return'chat';if(S.sponsor[d]!=='verified')return'sponsor';if(!S.shared[d])return'share';return'claim'}
-function openNextDay(){if(S.nextDayAt&&Date.now()>=S.nextDayAt&&S.day<3){S.day++;S.nextDayAt=null;S.activeStage='chat';log('next_day_opened',{day:S.day})}}
-function render(){openNextDay();if(!S.registered){show('landing');return}if(!S.introSeen){show('journeyIntro');$('#introWelcome').textContent=`Welcome, ${S.firstName} 🎉`;$('#startDay').textContent=`START DAY ${S.day}`;return}show('app');S.activeStage=stage();renderHeader();renderNext();renderChat();renderSponsor();renderShare();renderClaim();renderComplete();renderStatuses();renderAds();applyView();save()}
-function renderHeader(){const d=S.day,c=cfg();$('#dayNumber').textContent=d;$('#welcomeName').textContent=`Welcome${d>1?' back':''}, ${S.firstName}${d>1?' 🔥':' 🎉'}`;$('#todayAvailable').textContent=M(c.cash);$('#earnedTotal').textContent=M(cash());$('#remainingTotal').textContent=M(Math.max(0,C.campaign.cashTarget-cash()));$('#overallBar').style.width=Math.min(100,cash()/C.campaign.cashTarget*100)+'%';$('#cashSummary').textContent=`${M(cash())} / ${M(C.campaign.cashTarget)}`;$('#airtimeSummary').textContent=`${M(air())} / ${M(C.campaign.airtimeTarget)}`;$('#dataSummary').textContent=`${data()}GB / ${C.campaign.dataTarget}GB`;['One','Two','Three'].forEach((w,i)=>{$('#day'+w+'State').textContent=`Day ${i+1} — ${S.dayClaimed[i+1]?'Completed':i+1===d?'In Progress':'Locked'}`})}
-function applyView(){['chatStage','sponsorStage','shareStage','claimStage','dayComplete','finalSummary','rewardsPanel'].forEach(id=>$('#'+id).classList.add('hidden'));const map={chat:'chatStage',sponsor:'sponsorStage',share:'shareStage',claim:'claimStage',complete:'dayComplete',final:'finalSummary',rewards:'rewardsPanel'};const id=map[S.activeStage];if(id)$('#'+id).classList.remove('hidden')}
-function renderNext(){const c=cfg(),t=stage(),m=pendingMission();const v={chat:m?['Complete Today’s Fan Mission',m.question,'Fan mission ready',`${M(c.chatReward)} chat stage`,'OPEN FAN MISSION']:['Continue Celebration Chat',`Complete ${Math.max(0,c.chatGoal-S.chatReplies[S.day])} more meaningful replies.`,`${S.chatReplies[S.day]} of ${c.chatGoal} replies`,`${M(c.chatReward)} stage value`,'CONTINUE CHAT'],sponsor:['Open Sponsored Opportunity','Open today’s featured page, return and complete the follow-up.','Sponsored stage unlocked',`${M(c.sponsorReward)} stage value`,'OPEN OPPORTUNITY'],share:['Complete Sharing Reward','Open WhatsApp or copy your invitation link to continue.','Sharing stage ready',`${M(c.shareReward)} stage value`,'SHARE MY INVITATION'],claim:['Claim Today’s Reward','All required stages are complete.','Daily journey complete',`${M(c.cash)} available today`,'CLAIM TODAY’S REWARD'],complete:['Today’s Reward Completed','Your next earning day opens at the next day boundary.','Progress saved','Return tomorrow','VIEW MY PROGRESS'],final:['3-Day Journey Completed','Review your reward summary and submit your requests.','Final reward summary','Eligibility review required','VIEW FINAL REWARDS']}[t];$('#nextMoveTitle').textContent=v[0];$('#nextMoveText').textContent=v[1];$('#nextMoveMeta').textContent=v[2];$('#nextMoveReward').textContent=v[3];$('#nextMoveButton').textContent=v[4]}
-function renderChat(){const d=S.day,c=cfg(),flow=C.chat[d]||[],history=S.chatHistory[d]||[],m=pendingMission();$('#chatTitle').textContent=d===1?'Day 1 Fan Lounge':d===2?'Day 2 Celebration Conversation':'Final Day Fan Lounge';$('#chatReward').textContent=M(c.chatReward);$('#chatProgressText').textContent=`${S.chatReplies[d]} of ${c.chatGoal} replies completed`;$('#chatBar').style.width=Math.min(100,S.chatReplies[d]/c.chatGoal*100)+'%';let html='';history.forEach(x=>html+=`<div class="message host"><strong>${esc(x.host)}</strong><br>${esc(x.question)}</div><div class="message user">${esc(x.reply)}</div>`);const i=S.chatReplies[d];if(i<c.chatGoal&&!m){const q=flow[i],text=String(q.text).replaceAll('{name}',S.firstName);html+=`<div class="message host"><strong>${esc(q.host)}</strong><br>${esc(text)}</div>`;$('#suggestionRow').innerHTML=q.suggestions.map(s=>`<button type="button">${esc(s)}</button>`).join('');$$('#suggestionRow button').forEach(b=>b.onclick=()=>{$('#chatInput').value=b.textContent;$('#chatInput').focus()});$('#chatInput').disabled=false;$('#sendChat').disabled=false}else{$('#suggestionRow').innerHTML='';$('#chatInput').disabled=Boolean(m)||i>=c.chatGoal;$('#sendChat').disabled=Boolean(m)||i>=c.chatGoal}$('#chatMessages').innerHTML=html;$('#fanMission').classList.toggle('hidden',!m);if(m){$('#missionIcon').textContent=m.icon;$('#missionTitle').textContent=m.title;$('#missionQuestion').textContent=m.question;$('#missionOptions').innerHTML=m.options.map(o=>`<button type="button">${esc(o)}</button>`).join('');$$('#missionOptions button').forEach(b=>b.onclick=()=>{S.missionAnswers[d][m.id]=b.textContent;log('fan_mission_completed',{day:d,missionId:m.id,answer:b.textContent});render()})}$('#chatMessages').scrollTop=$('#chatMessages').scrollHeight}
-function sendChat(){const d=S.day,c=cfg(),i=S.chatReplies[d],flow=C.chat[d]||[],m=pendingMission(),value=$('#chatInput').value.trim();if(m)return alert('Complete the fan mission first.');if(i>=c.chatGoal)return;if(value.length<3)return alert('Type a short celebration reply first.');const q=flow[i],text=String(q.text).replaceAll('{name}',S.firstName);S.chatHistory[d].push({host:q.host,question:text,reply:value});S.chatReplies[d]++;$('#chatInput').value='';log('meaningful_reply_completed',{day:d,count:S.chatReplies[d]});if(chatDone(d)){S.sponsor[d]='available';log('chat_goal_completed',{day:d})}render()}
-function renderSponsor(){const d=S.day,c=cfg(),s=S.sponsor[d];$('#sponsorTitle').textContent=c.sponsorTitle;$('#sponsorRequirement').textContent=c.requirement;$('#sponsorReward').textContent=M(c.sponsorReward);$('#confirmReturn').classList.toggle('hidden',s!=='opened');$('#sponsorFollowup').classList.toggle('hidden',s!=='returned');$('#openSponsor').disabled=s==='verified';$('#openSponsor').textContent=s==='verified'?'STAGE COMPLETE':'OPEN OPPORTUNITY';$('#sponsorInstructions').textContent=s==='verified'?'Sponsored preview stage completed 🎉':'Open today’s featured opportunity and return to continue.'}
-function renderShare(){const d=S.day,c=cfg();$('#shareReward').textContent=M(c.shareReward);$('#shareStatus').textContent=S.shared[d]?'Sharing preview stage completed 🎉':S.shareOpened[d]?'Invitation action recorded. Continue when ready.':'Sharing stage not started';$('#qualifiedFans').textContent=C.demoMode?'Demo preview':'Referral verification required';$('#completeShare').classList.toggle('hidden',!S.shareOpened[d]||S.shared[d])}
-function renderClaim(){const c=cfg();$('#dailyBreakdown').innerHTML=`<div><span>Celebration Chat + Fan Missions</span><strong>${M(c.chatReward)}</strong></div><div><span>Sponsored Opportunity</span><strong>${M(c.sponsorReward)}</strong></div><div><span>Sharing Reward</span><strong>${M(c.shareReward)}</strong></div>${c.bonusReward?`<div><span>Daily Completion Bonus</span><strong>${M(c.bonusReward)}</strong></div>`:''}<div><span>Total Today</span><strong>${M(c.cash)}</strong></div>`;$('#claimText').textContent='All temporary preview stages are complete. Claiming saves the day and prevents duplicate progress.'}
-function renderComplete(){const d=S.day,c=cfg();$('#dayCompleteTitle').textContent=`Day ${d} Complete 🎉`;$('#dayCompleteSummary').textContent=`Cash progress today: ${M(c.cash)}${c.airtime?` • Airtime: ${M(c.airtime)}`:''}${c.data?` • Data: ${c.data}GB`:''}`;$('#countdownBox').classList.toggle('hidden',d===3);updateCountdown()}
-function renderStatuses(){$('#withdrawalStatus').textContent=S.withdrawalStatus;$('#airtimeRequestStatus').textContent=S.airtimeStatus;$('#dataRequestStatus').textContent=S.dataStatus}
-function updateCountdown(){if(!S.nextDayAt||S.day===3)return;const x=Math.max(0,S.nextDayAt-Date.now()),h=String(Math.floor(x/3600000)).padStart(2,'0'),m=String(Math.floor(x%3600000/60000)).padStart(2,'0'),s=String(Math.floor(x%60000/1000)).padStart(2,'0');$('#countdown').textContent=`${h}:${m}:${s}`;if(x===0)render()}
-function ads(){return C.ads['day'+S.day]||[]}function renderAd(slot,placement){const a=ads().find(x=>x.placement===placement);if(!a){slot.innerHTML='';slot.classList.add('hidden');return}slot.classList.remove('hidden');slot.innerHTML=`<article class="controlled-ad"><span>${esc(a.tag||'Sponsored')}</span><h3>${esc(a.title)}</h3><p>${esc(a.description)}</p><button type="button">VIEW SPONSORED CONTENT</button></article>`;slot.querySelector('button').onclick=()=>window.open(a.url,'_blank','noopener')}
-function renderAds(){renderAd($('#nativeAdSlot'),'native');renderAd($('#inChatAdSlot'),'in_chat');renderAd($('#inPageAdSlot'),'in_page');const half=ads().find(x=>x.placement==='half_screen'),key='pellerHalf-'+S.day;if(half&&!sessionStorage.getItem(key)&&S.chatReplies[S.day]>=3){sessionStorage.setItem(key,'1');$('#halfScreenTitle').textContent=half.title;$('#halfScreenText').textContent=half.description;$('#halfScreenPanel').classList.remove('hidden');$('#openHalfScreen').onclick=()=>window.open(half.url,'_blank','noopener')}}
-function referralLink(){if(!S.referralCode){S.referralCode=`PJ-${S.firstName.replace(/[^a-z0-9]/gi,'').slice(0,5).toUpperCase()}-${Math.floor(1000+Math.random()*9000)}`;save()}return`${location.origin}${location.pathname}?ref=${encodeURIComponent(S.referralCode)}`}
-$('#openRegistration').onclick=()=>show('registration');$('#joinForm').onsubmit=e=>{e.preventDefault();const n=$('#firstName').value.trim(),em=$('#email').value.trim().toLowerCase(),ph=$('#phone').value.replace(/\D/g,''),nw=$('#network').value;if(n.length<2||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)||ph.length<10||!nw){$('#joinError').classList.remove('hidden');return}Object.assign(S,{registered:true,firstName:n,email:em,phone:ph,network:nw});log('registration_completed',{network:nw});render()};$('#startDay').onclick=()=>{S.introSeen=true;render()};$('#nextMoveButton').onclick=()=>{S.activeStage=stage()==='complete'?'rewards':stage();render()};$('#sendChat').onclick=sendChat;$('#chatInput').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();sendChat()}});$('#openSponsor').onclick=()=>{S.sponsor[S.day]='opened';sessionStorage.setItem('sponsorDay',String(S.day));window.open(cfg().sponsorUrl,'_blank','noopener');render()};window.addEventListener('focus',()=>{if(S.sponsor[S.day]==='opened'&&sessionStorage.getItem('sponsorDay')===String(S.day))$('#confirmReturn').classList.remove('hidden')});$('#confirmReturn').onclick=()=>{S.sponsor[S.day]='returned';render()};$('#submitSponsor').onclick=()=>{if($('#sponsorAnswer').value.trim().length<3)return alert('Enter a short follow-up answer.');S.sponsor[S.day]='verified';log('demo_sponsor_completed',{day:S.day});render()};$('#shareWhatsapp').onclick=()=>{S.shareOpened[S.day]=true;location.href='https://wa.me/?text='+encodeURIComponent(`I joined the Peller & Jarvis 3-Day Wedding Reward Journey 🎉\n\nUp to ₦25,000 Cash\n₦10,000 Airtime\n20GB Data\n\nJoin here:\n${referralLink()}`);save()};$('#copyLink').onclick=async()=>{S.shareOpened[S.day]=true;try{await navigator.clipboard.writeText(referralLink());alert('Invitation link copied.')}catch{alert(referralLink())}render()};$('#completeShare').onclick=()=>{S.shared[S.day]=true;log('demo_share_completed',{day:S.day});render()};$('#claimDay').onclick=()=>{const d=S.day;if(!verified(d))return alert('Complete the chat, sponsored and sharing stages first.');if(S.dayClaimed[d])return;S.dayClaimed[d]=true;log('day_completed',{day:d});if(d<3){const x=new Date();x.setHours(24,0,0,0);S.nextDayAt=x.getTime();S.activeStage='complete'}else S.activeStage='final';render()};$('#viewRewards').onclick=()=>{S.activeStage='rewards';applyView()};$('#withdrawCash').onclick=()=>{if(!allDone())return;S.withdrawalStatus='Submitted';$('#requestStatus').textContent='Cash withdrawal submitted for review.';$('#requestStatus').classList.remove('hidden');render()};$('#redeemBundle').onclick=()=>{if(!allDone())return;S.airtimeStatus='Submitted';S.dataStatus='Submitted';$('#requestStatus').textContent='Airtime and data redemption submitted for review.';$('#requestStatus').classList.remove('hidden');render()};$$('[data-nav]').forEach(b=>b.onclick=()=>{const n=b.dataset.nav;$$('[data-nav]').forEach(x=>x.classList.toggle('active',x===b));S.activeStage=n==='share'?'share':n==='rewards'?'rewards':stage();applyView()});$('#closeHalfScreen').onclick=()=>$('#halfScreenPanel').classList.add('hidden');setInterval(updateCountdown,1000);render();
+const KEY='pellerWeddingApplicationV1';
+const $=selector=>document.querySelector(selector);
+const steps=['offerStep','registrationStep','accountStep','reviewStep','successStep'];
+const defaults={network:'',fullName:'',email:'',phone:'',bankName:'',accountName:'',accountNumber:'',status:'draft',submittedAt:null};
+let state=load();
+
+function load(){
+  try{return Object.assign({},defaults,JSON.parse(localStorage.getItem(KEY)||'{}'));}
+  catch{return {...defaults};}
+}
+function save(){localStorage.setItem(KEY,JSON.stringify(state));}
+function show(id){
+  steps.forEach(step=>$('#'+step).classList.toggle('hidden',step!==id));
+  window.scrollTo({top:Math.max(0,$('#'+id).offsetTop-16),behavior:'smooth'});
+}
+function digits(value){return String(value||'').replace(/\D/g,'');}
+function validEmail(value){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);}
+function maskAccount(value){
+  const clean=digits(value);
+  return clean.length===10?`${clean.slice(0,2)}••••••${clean.slice(-2)}`:'Not provided';
+}
+function escapeHtml(value){
+  return String(value||'').replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+}
+function prefill(){
+  $('#networkStart').value=state.network||'';
+  $('#network').value=state.network||'';
+  $('#fullName').value=state.fullName||'';
+  $('#email').value=state.email||'';
+  $('#phone').value=state.phone||'';
+  $('#bankName').value=state.bankName||'';
+  $('#accountName').value=state.accountName||'';
+  $('#accountNumber').value=state.accountNumber||'';
+}
+function renderReview(){
+  const rows=[
+    ['Full name',state.fullName],
+    ['Email',state.email],
+    ['Mobile number',state.phone],
+    ['Network',state.network],
+    ['Bank',state.bankName],
+    ['Account name',state.accountName],
+    ['Account number',maskAccount(state.accountNumber)]
+  ];
+  $('#reviewDetails').innerHTML=rows.map(([label,value])=>`<div class="review-row"><span>${escapeHtml(label)}</span><strong>${escapeHtml(value)}</strong></div>`).join('');
+}
+
+$('#startRegistration').addEventListener('click',()=>{
+  const network=$('#networkStart').value;
+  if(!network){alert('Select your network first.');return;}
+  state.network=network;
+  save();
+  prefill();
+  show('registrationStep');
+});
+
+$('#registrationForm').addEventListener('submit',event=>{
+  event.preventDefault();
+  const fullName=$('#fullName').value.trim();
+  const email=$('#email').value.trim().toLowerCase();
+  const phone=digits($('#phone').value);
+  const network=$('#network').value;
+  const valid=fullName.length>=3&&validEmail(email)&&phone.length>=10&&phone.length<=14&&network;
+  $('#registrationError').classList.toggle('hidden',valid);
+  if(!valid)return;
+  Object.assign(state,{fullName,email,phone,network,status:'draft'});
+  save();
+  prefill();
+  show('accountStep');
+});
+
+$('#accountForm').addEventListener('submit',event=>{
+  event.preventDefault();
+  const bankName=$('#bankName').value;
+  const accountName=$('#accountName').value.trim();
+  const accountNumber=digits($('#accountNumber').value);
+  const valid=Boolean(bankName)&&accountName.length>=3&&accountNumber.length===10;
+  $('#accountError').classList.toggle('hidden',valid);
+  if(!valid)return;
+  Object.assign(state,{bankName,accountName,accountNumber,status:'draft'});
+  save();
+  renderReview();
+  show('reviewStep');
+});
+
+$('#editApplication').addEventListener('click',()=>{
+  prefill();
+  show('registrationStep');
+});
+
+$('#submitApplication').addEventListener('click',()=>{
+  const confirmed=$('#consent').checked;
+  $('#consentError').classList.toggle('hidden',confirmed);
+  if(!confirmed)return;
+  state.status='submitted';
+  state.submittedAt=new Date().toISOString();
+  save();
+  $('#successName').textContent=state.fullName.split(/\s+/)[0]||'Supporter';
+  show('successStep');
+});
+
+$('#startOver').addEventListener('click',()=>{
+  localStorage.removeItem(KEY);
+  state={...defaults};
+  $('#consent').checked=false;
+  prefill();
+  show('offerStep');
+});
+
+if(state.status==='submitted'){
+  $('#successName').textContent=state.fullName.split(/\s+/)[0]||'Supporter';
+  show('successStep');
+}else{
+  prefill();
+  show('offerStep');
+}
 })();
