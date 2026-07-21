@@ -3,40 +3,146 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#611126" />
   <title>Peller & Jarvis 3-Day Celebration Journey</title>
   <meta property="og:title" content="Peller & Jarvis 3-Day Celebration Journey" />
-  <meta property="og:description" content="Complete celebration activities across three days and submit your reward eligibility for review." />
-  <meta property="og:image" content="676443C7-1C74-4A8C-AC08-05F20D05E502.png?v=4" />
+  <meta property="og:description" content="Join the celebration, complete fan challenges and progress through a 3-day reward journey." />
+  <meta property="og:image" content="676443C7-1C74-4A8C-AC08-05F20D05E502.png?v=7" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=4" />
+  <link rel="stylesheet" href="css/style.css?v=7" />
 </head>
 <body>
   <main class="site-shell">
-    <section class="hero-image"><img src="676443C7-1C74-4A8C-AC08-05F20D05E502.png?v=4" alt="Peller and Jarvis 2026 wedding celebration" /></section>
-    <div class="ticker"><span>PELLER AND JARVIS WEDDING CELEBRATION • 3-DAY SUPPORTER JOURNEY • ₦25,000 CASH TARGET • ₦10,000 AIRTIME • 20GB DATA</span></div>
-    <section class="live-counter"><span>Till Today</span><strong id="countdowntimer">4548</strong><span>supporters have joined the celebration journey</span></section>
-    <section id="onboarding" class="panel onboarding-panel">
-      <div id="intro"><span class="eyebrow">POWERED BY: Peller And Jarvis</span><h1>Join the 3-Day Wedding Celebration Journey</h1><p>Complete meaningful quizzes, predictions, creative fan activities and verified supporter milestones across three days.</p><div class="reward-strip"><div><strong>₦25,000</strong><span>Cash target</span></div><div><strong>₦10,000</strong><span>Airtime</span></div><div><strong>20GB</strong><span>Data</span></div></div><label for="year">Select your network</label><select id="year"><option value="">---SELECT YOUR NETWORK---</option><option>MTN</option><option>Airtel</option><option>Glo</option><option>9-Mobile</option></select><button id="go" class="primary-btn">GET STARTED</button></div>
-      <div id="loader" class="hidden loading-state"><div class="spin"></div><p>Preparing your celebration journey...</p><strong id="num">0%</strong></div>
-      <div id="info" class="hidden"><h2>Enter your mobile number</h2><p class="muted">Used only in this browser for the preview journey. It is not transmitted.</p><input type="tel" inputmode="numeric" placeholder="Type your number here" id="name" autocomplete="off" /><button id="confirm" class="primary-btn">CONTINUE</button><p class="error hidden">Please enter a valid mobile number.</p></div>
+    <section class="hero-image"><img src="676443C7-1C74-4A8C-AC08-05F20D05E502.png?v=7" alt="Peller and Jarvis 2026 wedding celebration" /></section>
+    <div class="ticker"><span>PELLER & JARVIS WEDDING CELEBRATION • ₦25,000 CASH • ₦10,000 AIRTIME • 20GB DATA • 3-DAY FAN JOURNEY</span></div>
+
+    <section id="onboarding" class="welcome-wrap">
+      <div class="welcome-card">
+        <span class="eyebrow">LET’S CELEBRATE 🎉</span>
+        <h1>Join the Peller & Jarvis Celebration</h1>
+        <p>Enter your details to begin your 3-day reward journey.</p>
+        <div class="reward-strip">
+          <div><strong>₦25,000</strong><span>Cash</span></div>
+          <div><strong>₦10,000</strong><span>Airtime</span></div>
+          <div><strong>20GB</strong><span>Data</span></div>
+        </div>
+        <form id="joinForm" novalidate>
+          <label for="firstName">First Name</label>
+          <input id="firstName" name="firstName" autocomplete="given-name" placeholder="Your first name" maxlength="40" required />
+          <label for="email">Email Address</label>
+          <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" maxlength="120" required />
+          <label for="phone">Mobile Number</label>
+          <input id="phone" name="phone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="08012345678" maxlength="15" required />
+          <label for="network">Select Network</label>
+          <select id="network" name="network" required><option value="">Choose your network</option><option>MTN</option><option>Airtel</option><option>Glo</option><option>9-Mobile</option></select>
+          <button class="primary-btn hero-cta" type="submit">JOIN THE CELEBRATION</button>
+          <p id="joinError" class="form-error hidden">Please complete all fields correctly.</p>
+          <small>Your progress is saved on this device. Reward delivery still requires campaign verification.</small>
+        </form>
+      </div>
     </section>
-    <section id="dashboard" class="hidden dashboard">
-      <div class="notice-banner"><strong>Preview status:</strong> Progress is stored in this browser. Cash, airtime, data, referrals and withdrawals require a real backend and admin confirmation before production. <button id="openAdminPreviewTop" class="text-btn">Preview controls</button></div>
-      <section class="dashboard-hero panel"><div><span class="eyebrow">YOUR CELEBRATION DASHBOARD</span><h2 id="welcomeName">Welcome, Supporter</h2><p id="nextTaskText">Complete your next required activity.</p></div><div class="day-pill">Day <span id="currentDay">1</span> of 3</div></section>
-      <section class="reward-grid"><article class="stat-card featured"><span>Campaign progress</span><strong id="cashProgress">₦0 / ₦25,000</strong><div class="mini-progress"><i id="cashBar"></i></div><small>Not a payment confirmation</small></article><article class="stat-card"><span>Today’s limit</span><strong id="dailyProgress">₦0 / ₦5,000</strong></article><article class="stat-card"><span>Supporter level</span><strong id="supporterLevel">Celebration Guest</strong></article><article class="stat-card"><span>Verified supporters</span><strong id="referralProgress">0 verified</strong></article><article class="stat-card"><span>3-day streak</span><strong id="streakValue">Day 1</strong></article><article class="stat-card"><span>Airtime & data</span><strong>Awaiting eligibility</strong></article></section>
-      <section class="panel section-head"><div><span class="eyebrow">DAY <span id="taskDayLabel">1</span> ACTIVITIES</span><h2>Available Celebration Tasks</h2></div><button id="copyReferral" class="secondary-btn">COPY REFERRAL CODE</button></section>
-      <div id="taskList" class="task-list"></div>
-      <section id="nextSession" class="panel hidden next-session"><h3>Today’s limit reached</h3><p>Your next set of activities opens after the next campaign day is approved.</p><button id="openAdminPreview" class="text-btn">Open preview controls</button></section>
-      <section id="eligibility" class="panel eligibility-card hidden"><span class="success-mark">✓</span><h2>Reward Journey Completed</h2><p>Your activity record is ready for administrator review.</p><div class="eligibility-grid"><div><span>Cash target</span><strong>₦25,000</strong></div><div><span>Airtime</span><strong>₦10,000</strong></div><div><span>Data</span><strong>20GB</strong></div></div><button id="submitEligibility" class="primary-btn">SUBMIT ELIGIBILITY FOR REVIEW</button><small>No payment or delivery is marked complete until confirmed by the campaign administrator.</small></section>
+
+    <section id="dashboard" class="dashboard hidden">
+      <section class="welcome-panel panel" data-view="home">
+        <div>
+          <span class="eyebrow">DAY <span id="currentDay">1</span> OF 3</span>
+          <h2 id="welcomeName">Welcome, Fan 🎉</h2>
+          <p id="dayMessage">Earn ₦5,000 today to move closer to your full reward.</p>
+        </div>
+        <div class="day-pill">Day <span id="dayPill">1</span></div>
+      </section>
+
+      <section class="journey-steps panel" aria-label="Journey progress" data-view="home earn">
+        <div class="journey-title"><span>Your celebration journey</span><strong id="journeyStepText">Earn Today</strong></div>
+        <div class="steps-row">
+          <div class="journey-step" data-step="joined"><i>✓</i><span>Joined</span></div>
+          <div class="journey-step" data-step="earn"><i>1</i><span>Earn Today</span></div>
+          <div class="journey-step" data-step="invite"><i>2</i><span>Invite Fans</span></div>
+          <div class="journey-step" data-step="bonus"><i>3</i><span>Unlock Bonus</span></div>
+          <div class="journey-step" data-step="goal"><i>4</i><span>Daily Goal</span></div>
+        </div>
+      </section>
+
+      <section id="nextMoveCard" class="next-move-card panel" data-view="home earn">
+        <span class="eyebrow">YOUR NEXT MOVE</span>
+        <div class="next-move-main">
+          <div class="next-icon" id="nextMoveIcon">🔥</div>
+          <div><h2 id="nextMoveTitle">Peller Fan Challenge</h2><p id="nextMoveDescription">Complete your next celebration activity.</p></div>
+        </div>
+        <div class="next-reward"><span id="nextMoveMeta">About 3 minutes</span><strong id="nextMoveReward">Earn ₦1,000</strong></div>
+        <button id="continueEarning" class="primary-btn hero-cta">CONTINUE EARNING</button>
+      </section>
+
+      <section class="reward-overview panel" data-view="home rewards">
+        <div class="section-kicker">YOUR 3-DAY REWARD</div>
+        <div class="main-rewards"><div><strong>₦25,000</strong><span>Cash</span></div><div><strong>₦10,000</strong><span>Airtime</span></div><div><strong>20GB</strong><span>Data</span></div></div>
+      </section>
+
+      <section class="priority-grid" data-view="home rewards profile">
+        <article class="earnings-card">
+          <span>Your Earnings</span><strong id="cashEarned">₦0</strong><small>3-Day Goal: ₦25,000</small>
+          <div class="progress-track"><i id="cashBar"></i></div>
+          <p>Complete your 3-day journey to unlock withdrawal.</p>
+          <button id="howRewardsWork" class="info-link">How rewards work</button>
+        </article>
+        <article class="day-progress-card">
+          <span>Today’s Earning Goal</span><strong id="dailyProgress">₦0 of ₦5,000</strong>
+          <div class="progress-track light"><i id="dailyBar"></i></div>
+          <small id="dailyHint">You’re getting closer.</small>
+        </article>
+      </section>
+
+      <section id="inviteSection" class="invite-card panel" data-view="invite home">
+        <div class="invite-head"><div><span class="eyebrow">BRING MORE FANS INTO THE CELEBRATION</span><h2 id="inviteTitle">Invite Fans to Unlock More</h2></div><div class="fan-count"><strong id="referralProgress">0 of 3</strong><span>fans joined</span></div></div>
+        <p id="inviteHint">Qualified referrals only. One more fan can unlock your next earning activity.</p>
+        <div id="fanIcons" class="fan-icons"></div>
+        <div class="invite-actions"><button id="shareWhatsapp" class="whatsapp-btn">INVITE ON WHATSAPP</button><button id="copyReferral" class="secondary-btn">COPY MY LINK</button></div>
+      </section>
+
+      <section class="profile-strip panel" data-view="profile rewards home">
+        <div><span>Your Fan Level</span><strong id="supporterLevel">Celebration Guest</strong><small id="levelHint">Complete one activity to become an Official Fan.</small></div>
+        <div><span>Airtime</span><strong id="airtimeStatus">In Progress</strong></div>
+        <div><span>Data</span><strong id="dataStatus">In Progress</strong></div>
+      </section>
+
+      <section id="activitiesSection" class="activities-section" data-view="earn">
+        <div class="section-heading"><div><span class="eyebrow">DAY <span id="activityDay">1</span></span><h2>Today’s Celebration Activities</h2><p>Pick up where you stopped.</p></div></div>
+        <div id="taskList" class="task-list"></div>
+      </section>
+
+      <section id="nextSession" class="goal-complete panel hidden" data-view="home earn">
+        <div class="celebration-burst">🎉</div><h2>TODAY’S GOAL COMPLETE</h2><p id="goalCompleteText">You earned today’s target.</p><span>Next celebration day opens after campaign approval.</span><button id="viewProgress" class="secondary-btn">VIEW MY PROGRESS</button>
+      </section>
+
+      <section id="eligibility" class="eligibility-card panel hidden" data-view="rewards home">
+        <span class="success-mark">✓</span><h2>Reward Journey Completed</h2><p>Your activity record is ready for review.</p>
+        <div class="main-rewards"><div><strong>₦25,000</strong><span>Cash</span></div><div><strong>₦10,000</strong><span>Airtime</span></div><div><strong>20GB</strong><span>Data</span></div></div>
+        <button id="submitEligibility" class="primary-btn">SUBMIT FOR REVIEW</button><small>Delivery is only confirmed after administrator approval.</small>
+      </section>
+
+      <section class="fan-feed panel" data-view="home">
+        <div class="social-summary"><span>💛 Fan reactions</span><span>Wedding celebration wall</span></div>
+        <article class="comment"><img src="assets/images/joseph.svg" alt=""/><div><strong>Joseph Emmanuel</strong><p>Congratulations Peller and Jarvis. Wishing you a beautiful celebration.</p><small>1m</small></div></article>
+        <article class="comment"><img src="assets/images/amahle.svg" alt=""/><div><strong>Amahle John</strong><p>Burgundy and gold will be perfect for the wedding!</p><small>4m</small></div></article>
+      </section>
     </section>
-    <section class="panel comments-section"><div class="social-summary"><span>💛 134K</span><span>23K comments · 12K shares</span></div><div class="social-actions"><span>👍 Like</span><span>💬 Comment</span><span>↗ Share</span></div><article class="comment"><img src="assets/images/joseph.svg" alt=""/><div><strong>Joseph Emmanuel</strong><p>Congratulations Peller and Jarvis. Wishing you a beautiful celebration.</p><small>1m · Like · Reply</small></div></article><article class="comment"><img src="assets/images/david.svg" alt=""/><div><strong>David Anthony</strong><p>The supporter activities make the celebration more interesting.</p><small>2m · Like · Reply</small></div></article><article class="comment"><img src="assets/images/amahle.svg" alt=""/><div><strong>Amahle John</strong><p>I submitted my wedding colour prediction. Burgundy and gold!</p><small>4m · Like · Reply</small></div></article><input class="comment-input" placeholder="Write a congratulatory message..." /></section>
-    <center id="supercounter-slot"><script src="https://widget.supercounters.com/ssl/online_i.js"></script><script>if(typeof sc_online_i==='function'){sc_online_i(1736627,'ffffff','fff');}</script><noscript>Super Counter</noscript></center>
   </main>
+
+  <nav id="bottomNav" class="bottom-nav hidden" aria-label="Mobile navigation">
+    <button data-nav="home" class="active"><span>⌂</span>Home</button>
+    <button data-nav="earn" class="earn-nav"><span>★</span>Earn</button>
+    <button data-nav="invite"><span>↗</span>Invite</button>
+    <button data-nav="rewards"><span>🎁</span>Rewards</button>
+    <button data-nav="profile"><span>●</span>Profile</button>
+  </nav>
+
   <div id="taskModal" class="modal hidden" role="dialog" aria-modal="true"><div class="modal-card"><button class="modal-close" data-close-modal>×</button><div id="taskModalBody"></div></div></div>
-  <div id="sponsoredPanel" class="modal hidden"><div class="modal-card sponsored-card"><button class="modal-close" data-close-sponsored>×</button><span class="sponsored-label">Sponsored</span><h3 id="sponsoredTitle">Sponsored Reward</h3><p>This optional opportunity is clearly separated from your celebration activity.</p><button id="openSponsored" class="primary-btn">OPEN SPONSORED TASK</button></div></div>
-  <aside id="adminPreview" class="admin-drawer hidden"><button id="closeAdminPreview">×</button><h3>Preview controls</h3><p>Browser-local testing only. These controls are not production verification.</p><a href="admin.html" class="secondary-btn">OPEN CAMPAIGN MANAGER</a><button data-admin="approve-referral">Approve one demo referral</button><button data-admin="approve-pending">Approve pending demo review</button><button data-admin="next-day">Advance preview day</button><button data-admin="reset">Reset browser progress</button></aside>
-  <script src="js/config.js?v=4"></script><script src="js/config-loader.js?v=1"></script><script src="js/app.js?v=6"></script>
+  <div id="infoModal" class="modal hidden" role="dialog" aria-modal="true"><div class="modal-card"><button class="modal-close" data-close-info>×</button><h2>How rewards work</h2><p>Celebration earnings show your progress toward the published campaign goal. Referrals, eligibility, withdrawal, airtime and data remain subject to the campaign’s verification and approval process.</p></div></div>
+  <div id="sponsoredPanel" class="modal hidden"><div class="modal-card sponsored-card"><button class="modal-close" data-close-sponsored>×</button><span class="sponsored-label">Sponsored Opportunity</span><h3 id="sponsoredTitle">Featured Opportunity</h3><p>Explore the approved opportunity and return to continue. Opening it alone does not confirm completion.</p><button id="openSponsored" class="primary-btn">VIEW OPPORTUNITY</button></div></div>
+  <aside id="adminPreview" class="admin-drawer hidden"><button id="closeAdminPreview">×</button><h3>Developer preview</h3><p>Browser-local testing controls.</p><a href="admin.html" class="secondary-btn">OPEN CAMPAIGN MANAGER</a><button data-admin="approve-referral">Approve one demo referral</button><button data-admin="approve-pending">Approve pending review</button><button data-admin="next-day">Advance preview day</button><button data-admin="reset">Reset progress</button></aside>
+
+  <script src="js/config.js?v=4"></script><script src="js/config-loader.js?v=1"></script><script src="js/app.js?v=7"></script>
 </body>
 </html>
