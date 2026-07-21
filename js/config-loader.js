@@ -1,6 +1,7 @@
 (function(){
   'use strict';
   const KEY='pellerCelebrationAdminOverrides';
+  const PROGRESS_KEY='pellerCelebrationV2';
   const VALID_STAGES=new Set(['opening','sharing','after_share']);
   function clone(value){return JSON.parse(JSON.stringify(value));}
   function validTaskDay(tasks){return Array.isArray(tasks)&&tasks.every(task=>task&&VALID_STAGES.has(task.stage));}
@@ -30,4 +31,20 @@
   }catch(error){
     console.warn('Could not apply admin overrides.',error);
   }
+  document.addEventListener('DOMContentLoaded',function(){
+    const modal=document.querySelector('#taskModal');
+    if(!modal)return;
+    let previousEarned=0;
+    try{previousEarned=Number(JSON.parse(localStorage.getItem(PROGRESS_KEY)||'{}').earned||0);}catch{}
+    const observer=new MutationObserver(function(){
+      if(!modal.classList.contains('hidden'))return;
+      let currentEarned=previousEarned;
+      try{currentEarned=Number(JSON.parse(localStorage.getItem(PROGRESS_KEY)||'{}').earned||0);}catch{}
+      if(currentEarned!==previousEarned){
+        previousEarned=currentEarned;
+        window.setTimeout(function(){window.location.reload();},300);
+      }
+    });
+    observer.observe(modal,{attributes:true,attributeFilter:['class']});
+  });
 })();
