@@ -1,0 +1,2 @@
+Force production redeploy for the self-contained Peller & Jarvis build.
+Latest public build: index.html single-file version.
